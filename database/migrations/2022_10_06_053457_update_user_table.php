@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->string('zipcode');
+            $table->string('address');
+            $table->string('telephone');
         });
     }
 
