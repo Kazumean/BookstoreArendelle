@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class ZipcodeRule implements Rule
+class TelephoneRule implements Rule
 {
     /**
      * Create a new rule instance.
@@ -25,7 +25,7 @@ class ZipcodeRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        return preg_match('/^\d{3}[-]\d{4}$/', $value);
+        return preg_match('/^0\\d{1,4}-\\d{1,4}-\\d{3,4}$/', $value);
     }
 
     /**
@@ -35,6 +35,6 @@ class ZipcodeRule implements Rule
      */
     public function message()
     {
-        return '郵便番号はXXX-XXXXの形式で入力してください';
+        return '電話番号はXXXX-XXXX-XXXXの形式で入力してください';
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use App\Rules\TelephoneRule;
 use App\Rules\ZipcodeRule;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -35,12 +36,12 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'zipcode' => ['required'],
+            'name' => ['required', 'string'],
+            'email' => ['required', 'string', 'email', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults(), 'max:16'],
+            'zipcode' => ['required', new ZipcodeRule],
             'address' => ['required', 'string'],
-            'telephone' => ['required', 'string'],
+            'telephone' => ['required', 'string', new TelephoneRule],
         ]);
 
         $user = User::create([

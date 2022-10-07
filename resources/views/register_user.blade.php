@@ -65,7 +65,7 @@
 
                 <x-text-input id="name" class="validate" type="text" name="name" :value="old('name')"  />
 
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                <x-input-error :messages="$errors->get('name')" class="mt-2" style="color: red" />
               {{-- <input id="name" type="text" class="validate" value="{{ old('name') }}">
               <label for="name">氏名</label>
               @error('name')
@@ -78,9 +78,9 @@
             <div class="input-field col s12">
               <x-input-label for="email" :value="__('メールアドレス')" />
 
-                <x-text-input id="email" class="validate" type="email" name="email" :value="old('email')"  />
+                <x-text-input id="email" class="validate" type="text" name="email" :value="old('email')"  />
 
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                <x-input-error :messages="$errors->get('email')" class="mt-2" style="color: red"/>
               {{-- <input id="email" type="email" class="validate" value="{{ old('email') }}">
               <label for="email">メールアドレス</label>
               @error('email')
@@ -95,7 +95,7 @@
 
                 <x-text-input id="zipcode" class="validate" type="text" name="zipcode" :value="old('zipcode')"  />
 
-                <x-input-error :messages="$errors->get('zipcode')" class="mt-2" />
+                <x-input-error :messages="$errors->get('zipcode')" class="mt-2" style="color: red"/>
               {{-- <input id="zipcode" type="text" value="{{ old('zipcode') }}">
               <label for="zipcode">郵便番号</label>
               @error('zipcode')
@@ -113,7 +113,7 @@
 
                 <x-text-input id="address" class="validate" type="text" name="address" :value="old('address')"  />
 
-                <x-input-error :messages="$errors->get('address')" class="mt-2" />
+                <x-input-error :messages="$errors->get('address')" class="mt-2" style="color: red"/>
               {{-- <input id="address" type="text" value="{{ old('address') }}">
               <label for="address">住所</label>
               @error('address')
@@ -130,7 +130,7 @@
 
                 <x-text-input id="telephone" class="validate" type="text" name="telephone" :value="old('telephone')"  />
 
-                <x-input-error :messages="$errors->get('telephone')" class="mt-2" />
+                <x-input-error :messages="$errors->get('telephone')" class="mt-2" style="color: red"/>
               {{-- <input id="telephone" type="tel" value="{{ old('telephone') }}">
               <label for="telephone">電話番号</label>
               @error('telephone')
@@ -147,10 +147,9 @@
 
                 <x-text-input id="password" class="validate"
                                 type="password"
-                                name="password"
-                                required autocomplete="new-password" />
+                                name="password" />
 
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                <x-input-error :messages="$errors->get('password')" class="mt-2" style="color: red"/>
               {{-- <input
                 id="password"
                 type="password"
@@ -170,9 +169,9 @@
 
                 <x-text-input id="password_confirmation" class="validate"
                                 type="password"
-                                name="password_confirmation" required />
+                                name="password_confirmation"/>
 
-                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" style="color: red"/>
               {{-- <input
                 id="confirmation_password"
                 type="password"
