@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="css/order_confirm.css" />
     <link rel="stylesheet" href="css/order_finished.css" />
     <link rel="stylesheet" href="css/responsive.css" />
+    <script type="text/javascript" src="https://ajaxzip3.github.io/ajaxzip3.js" charset="utf-8"></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -91,9 +92,9 @@
           {{-- <div class="error">郵便番号はXXX-XXXXの形式で入力してください</div> --}}
           <div class="row">
             <div class="input-field col s12">
-              <x-input-label for="zipcode" :value="__('郵便番号')" />
+              <x-input-label for="zipcode" :value="__('郵便番号')"/>
 
-                <x-text-input id="zipcode" class="validate" type="text" name="zipcode" :value="old('zipcode')"  />
+                <x-text-input id="zipcode" class="validate" type="text" name="zipcode" :value="old('zipcode')" onKeyUp="AjaxZip3.zip2addr(this,'','address','address');" />
 
                 <x-input-error :messages="$errors->get('zipcode')" class="mt-2" style="color: red"/>
               {{-- <input id="zipcode" type="text" value="{{ old('zipcode') }}">
