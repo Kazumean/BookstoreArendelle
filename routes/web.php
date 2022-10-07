@@ -25,3 +25,6 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 
+//商品一覧を表示する
+
+

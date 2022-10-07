@@ -1,256 +1,215 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta charset="utf-8" />
+    <!--Import Google Icon Font-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- Import Materialize CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <!-- Import Font Wesome -->
+    <link
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/register_admin.css" />
+    <link rel="stylesheet" href="css/login.css" />
+    <link rel="stylesheet" href="css/item_list.css" />
+    <link rel="stylesheet" href="css/item_detail.css" />
+    <link rel="stylesheet" href="css/cart_list.css" />
+    <link rel="stylesheet" href="css/order_confirm.css" />
+    <link rel="stylesheet" href="css/order_finished.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ピザ屋のネット注文</title>
-    <link href="../static/css/bootstrap.css" rel="stylesheet" />
-    <link href="../static/css/piza.css" rel="stylesheet" />
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ラクラクアロハ</title>
   </head>
   <body>
-    <div class="container">
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button
-              type="button"
-              class="navbar-toggle collapsed"
-              data-toggle="collapse"
-              data-target="#bs-example-navbar-collapse-1"
-              aria-expanded="false"
-            >
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span> <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="item_list_pizza.html">
-              <!-- 企業ロゴ -->
-              <img
-                alt="main log"
-                src="../static/img_aloha/header_logo.png"
-                height="35"
-              />
+    <header>
+      <div class="container">
+        <div class="header">
+          <div class="header-left">
+            <a href="top.html">
+              <img class="logo" src="img/header_logo.png" />
             </a>
           </div>
 
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div
-            class="collapse navbar-collapse"
-            id="bs-example-navbar-collapse-1"
-          >
-            <p class="navbar-text navbar-right">
-              <a href="cart_list.html" class="navbar-link">ショッピングカート</a
-              >&nbsp;&nbsp;
-              <a href="order_history.html" class="navbar-link">注文履歴</a
-              >&nbsp;&nbsp;
-              <a href="login.html" class="navbar-link">ログイン</a>&nbsp;&nbsp;
-              <a href="item_list_pizza.html" class="navbar-link">ログアウト</a>
-            </p>
-          </div>
-          <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-      </nav>
+          <div class="header-right">
+            <a href="item_list.html">商品一覧</a>
+            <a href="register_admin.html">会員登録</a>
+            <a href="cart_list.html">
+              <i class="fas fa-shopping-cart"> </i>カート
+            </a>
+            <a href="login.html" class="login">
+              <i class="fas fa-sign-in-alt"></i>ログイン
+            </a>
 
-      <!-- search form -->
-      <div class="row">
-        <div
-          class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-10 col-xs-12"
-        >
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <div class="panel-title">商品を検索する</div>
-            </div>
-            <div class="panel-body">
-              <form method="post" action="#" class="form-horizontal">
-                <div class="form-group">
-                  <label for="code" class="control-label col-sm-2"
-                    >商品名</label
-                  >
-                  <div class="col-sm-9">
-                    <input
-                      type="text"
-                      name="code"
-                      id="code"
-                      class="form-control input-sm"
-                    />
-                  </div>
-                </div>
-                <div class="text-center">
-                  <button type="submit" value="検索" class="btn btn-primary">
-                    検索
-                  </button>
-                  <button type="reset" value="クリア" class="btn btn-default">
-                    クリア
-                  </button>
-                </div>
-              </form>
-            </div>
+            <a href="order_history.html">注文履歴</a>
           </div>
         </div>
       </div>
+    </header>
+    <!-- search form -->
+    <div class="search-wrapper">
+      <div class="container">
+        <form method="post" class="search-form">
+          <input type="text" name="name" class="search-name-input" />
 
-      <!-- table -->
-      <div class="row">
-        <div
-          class="table-responsive col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-10 col-xs-12"
-        >
-          <table class="table table-striped item-list-table">
-            <tbody>
-              <tr>
-                <th>
-                  <a href="item_detail.html">
-                    <img
-                      src="../static/img_aloha/1.jpg"
-                      class="img-responsive img-rounded item-img-center"
-                      width="200"
-                      height="600"
-                    /> </a
-                  ><br />
-                  <a href="item_detail.html">じゃがバターベーコン</a><br />
-                  <span class="price">&nbsp;М&nbsp;</span
-                  >&nbsp;&nbsp;1,380円(税抜)<br />
-                  <span class="price">&nbsp;Ｌ</span
-                  >&nbsp;&nbsp;2,380円(税抜)<br />
-                </th>
-                <th>
-                  <a href="item_detail.html">
-                    <img
-                      src="../static/img_aloha/2.jpg"
-                      class="img-responsive img-rounded item-img-center"
-                      width="200"
-                      height="600"
-                    /> </a
-                  ><br />
-                  <a href="item_detail.html">じゃがバターベーコン</a><br />
-                  <span class="price">&nbsp;М&nbsp;</span
-                  >&nbsp;&nbsp;1,380円(税抜)<br />
-                  <span class="price">&nbsp;Ｌ</span
-                  >&nbsp;&nbsp;2,380円(税抜)<br />
-                </th>
-                <th>
-                  <a href="item_detail.html">
-                    <img
-                      src="../static/img_aloha/3.jpg"
-                      class="img-responsive img-rounded item-img-center"
-                      width="200"
-                      height="600"
-                    /> </a
-                  ><br />
-                  <a href="item_detail.html">じゃがバターベーコン</a><br />
-                  <span class="price">&nbsp;М&nbsp;</span
-                  >&nbsp;&nbsp;1,380円(税抜)<br />
-                  <span class="price">&nbsp;Ｌ</span
-                  >&nbsp;&nbsp;2,380円(税抜)<br />
-                </th>
-              </tr>
-              <tr>
-                <th>
-                  <a href="item_detail.html">
-                    <img
-                      src="../static/img_aloha/4.jpg"
-                      class="img-responsive img-rounded item-img-center"
-                      width="200"
-                      height="600"
-                    /> </a
-                  ><br />
-                  <a href="item_detail.html">じゃがバターベーコン</a><br />
-                  <span class="price">&nbsp;М&nbsp;</span
-                  >&nbsp;&nbsp;1,380円(税抜)<br />
-                  <span class="price">&nbsp;Ｌ</span
-                  >&nbsp;&nbsp;2,380円(税抜)<br />
-                </th>
-                <th>
-                  <a href="item_detail.html">
-                    <img
-                      src="../static/img_aloha/5.jpg"
-                      class="img-responsive img-rounded item-img-center"
-                      width="200"
-                      height="600"
-                    /> </a
-                  ><br />
-                  <a href="item_detail.html">じゃがバターベーコン</a><br />
-                  <span class="price">&nbsp;М&nbsp;</span
-                  >&nbsp;&nbsp;1,380円(税抜)<br />
-                  <span class="price">&nbsp;Ｌ</span
-                  >&nbsp;&nbsp;2,380円(税抜)<br />
-                </th>
-                <th>
-                  <a href="item_detail.html">
-                    <img
-                      src="../static/img_aloha/6.jpg"
-                      class="img-responsive img-rounded item-img-center"
-                      width="200"
-                      height="600"
-                    /> </a
-                  ><br />
-                  <a href="item_detail.html">じゃがバターベーコン</a><br />
-                  <span class="price">&nbsp;М&nbsp;</span
-                  >&nbsp;&nbsp;1,380円(税抜)<br />
-                  <span class="price">&nbsp;Ｌ</span
-                  >&nbsp;&nbsp;2,380円(税抜)<br />
-                </th>
-              </tr>
-              <tr>
-                <th>
-                  <a href="item_detail.html">
-                    <img
-                      src="../static/img_aloha/7.jpg"
-                      class="img-responsive img-rounded item-img-center"
-                      width="200"
-                      height="600"
-                    /> </a
-                  ><br />
-                  <a href="item_detail.html">じゃがバターベーコン</a><br />
-                  <span class="price">&nbsp;М&nbsp;</span
-                  >&nbsp;&nbsp;1,380円(税抜)<br />
-                  <span class="price">&nbsp;Ｌ</span
-                  >&nbsp;&nbsp;2,380円(税抜)<br />
-                </th>
-                <th>
-                  <a href="item_detail.html">
-                    <img
-                      src="../static/img_aloha/8.jpg"
-                      class="img-responsive img-rounded item-img-center"
-                      width="200"
-                      height="600"
-                    /> </a
-                  ><br />
-                  <a href="item_detail.html">じゃがバターベーコン</a><br />
-                  <span class="price">&nbsp;М&nbsp;</span
-                  >&nbsp;&nbsp;1,380円(税抜)<br />
-                  <span class="price">&nbsp;Ｌ</span
-                  >&nbsp;&nbsp;2,380円(税抜)<br />
-                </th>
-                <th>
-                  <a href="item_detail.html">
-                    <img
-                      src="../static/img_aloha/9.jpg"
-                      class="img-responsive img-rounded item-img-center"
-                      width="200"
-                      height="600"
-                    /> </a
-                  ><br />
-                  <a href="item_detail.html">じゃがバターベーコン</a><br />
-                  <span class="price">&nbsp;М&nbsp;</span
-                  >&nbsp;&nbsp;1,380円(税抜)<br />
-                  <span class="price">&nbsp;Ｌ</span
-                  >&nbsp;&nbsp;2,380円(税抜)<br />
-                </th>
-              </tr>
-            </tbody>
-          </table>
+          <button class="btn search-btn" type="button">
+            <span>検　索</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- item list -->
+    <div class="item-wrapper">
+      <div class="container">
+        <div class="items">
+          <div class="item">
+            <div class="item-icon">
+              <img src="img/1.jpg" />
+            </div>
+            <a href="item_detail.html">ハワイアンパラダイス</a><br />
+            <span class="price">Ｍ</span>1,380円(税抜)<br />
+            <span class="price">Ｌ</span>2,380円(税抜)<br />
+          </div>
+
+          <div class="item">
+            <div class="item-icon">
+              <img src="img/2.jpg" />
+            </div>
+            <a href="item_detail.html">ハワイアンパラダイス</a><br />
+            <span class="price">Ｍ</span>1,380円(税抜)<br />
+            <span class="price">Ｌ</span>2,380円(税抜)<br />
+          </div>
+
+          <div class="item">
+            <div class="item-icon">
+              <img src="img/3.jpg" />
+            </div>
+            <a href="item_detail.html">ハワイアンパラダイス</a><br />
+            <span class="price">Ｍ</span>1,380円(税抜)<br />
+            <span class="price">Ｌ</span>2,380円(税抜)<br />
+          </div>
+
+          <div class="item">
+            <div class="item-icon">
+              <img src="img/4.jpg" />
+            </div>
+            <a href="item_detail.html">ハワイアンパラダイス</a><br />
+            <span class="price">Ｍ</span>1,380円(税抜)<br />
+            <span class="price">Ｌ</span>2,380円(税抜)<br />
+          </div>
+
+          <div class="item">
+            <div class="item-icon">
+              <img src="img/5.jpg" />
+            </div>
+            <a href="item_detail.html">ハワイアンパラダイス</a><br />
+            <span class="price">Ｍ</span>1,380円(税抜)<br />
+            <span class="price">Ｌ</span>2,380円(税抜)<br />
+          </div>
+
+          <div class="item">
+            <div class="item-icon">
+              <img src="img/6.jpg" />
+            </div>
+            <a href="item_detail.html">ハワイアンパラダイス</a><br />
+            <span class="price">Ｍ</span>1,380円(税抜)<br />
+            <span class="price">Ｌ</span>2,380円(税抜)<br />
+          </div>
+
+          <div class="item">
+            <div class="item-icon">
+              <img src="img/7.jpg" />
+            </div>
+            <a href="item_detail.html">ハワイアンパラダイス</a><br />
+            <span class="price">Ｍ</span>1,380円(税抜)<br />
+            <span class="price">Ｌ</span>2,380円(税抜)<br />
+          </div>
+
+          <div class="item">
+            <div class="item-icon">
+              <img src="img/8.jpg" />
+            </div>
+            <a href="item_detail.html">ハワイアンパラダイス</a><br />
+            <span class="price">Ｍ</span>1,380円(税抜)<br />
+            <span class="price">Ｌ</span>2,380円(税抜)<br />
+          </div>
+
+          <div class="item">
+            <div class="item-icon">
+              <img src="img/9.jpg" />
+            </div>
+            <a href="item_detail.html">ハワイアンパラダイス</a><br />
+            <span class="price">Ｍ</span>1,380円(税抜)<br />
+            <span class="price">Ｌ</span>2,380円(税抜)<br />
+          </div>
+
+          <div class="item">
+            <div class="item-icon">
+              <img src="img/10.jpg" />
+            </div>
+            <a href="item_detail.html">ハワイアンパラダイス</a><br />
+            <span class="price">Ｍ</span>1,380円(税抜)<br />
+            <span class="price">Ｌ</span>2,380円(税抜)<br />
+          </div>
+
+          <div class="item">
+            <div class="item-icon">
+              <img src="img/11.jpg" />
+            </div>
+            <a href="item_detail.html">ハワイアンパラダイス</a><br />
+            <span class="price">Ｍ</span>1,380円(税抜)<br />
+            <span class="price">Ｌ</span>2,380円(税抜)<br />
+          </div>
+
+          <div class="item">
+            <div class="item-icon">
+              <img src="img/12.jpg" />
+            </div>
+            <a href="item_detail.html">ハワイアンパラダイス</a><br />
+            <span class="price">Ｍ</span>1,380円(税抜)<br />
+            <span class="price">Ｌ</span>2,380円(税抜)<br />
+          </div>
+
+          <div class="item">
+            <div class="item-icon">
+              <img src="img/13.jpg" />
+            </div>
+            <a href="item_detail.html">ハワイアンパラダイス</a><br />
+            <span class="price">Ｍ</span>1,380円(税抜)<br />
+            <span class="price">Ｌ</span>2,380円(税抜)<br />
+          </div>
+
+          <div class="item">
+            <div class="item-icon">
+              <img src="img/14.jpg" />
+            </div>
+            <a href="item_detail.html">ハワイアンパラダイス</a><br />
+            <span class="price">Ｍ</span>1,380円(税抜)<br />
+            <span class="price">Ｌ</span>2,380円(税抜)<br />
+          </div>
         </div>
       </div>
     </div>
-    <!-- end container -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
+
+    <footer>
+      <div class="container">
+        <img src="img/header_logo.png" />
+        <p>アロハな気分をあなたにお届け！</p>
+      </div>
+    </footer>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
 </html>
