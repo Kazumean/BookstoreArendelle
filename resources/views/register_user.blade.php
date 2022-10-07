@@ -102,9 +102,9 @@
               @error('zipcode')
               <span class="error">郵便番号はXXX-XXXXの形式で入力してください</span>
               @enderror --}}
-              <button class="btn" type="button">
+              {{-- <button class="btn" type="button">
                 <span>住所検索</span>
-              </button>
+              </button> --}}
             </div>
           </div>
           {{-- <div class="error">住所を入力して下さい</div> --}}
