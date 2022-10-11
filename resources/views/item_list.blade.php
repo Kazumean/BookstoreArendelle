@@ -30,7 +30,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ラクラクアロハ</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
   </head>
   <body>
     <header>
@@ -38,13 +38,13 @@
         <div class="header">
           <div class="header-left">
             <a href="top.html">
-              <img class="logo" src="img/header_logo.png" />
+              <img class="logo" src="img/header_logo2.jpg" />
             </a>
           </div>
 
           <div class="header-right">
-            <a href="item_list.html">商品一覧</a>
-            <a href="register_admin.html">会員登録</a>
+            <a href="{{ route('books.index') }}">商品一覧</a>
+            <a href="{{ route('register_user') }}">会員登録</a>
             <a href="cart_list.html">
               <i class="fas fa-shopping-cart"> </i>カート
             </a>
@@ -74,139 +74,33 @@
     <div class="item-wrapper">
       <div class="container">
         <div class="items">
+          
+          @foreach ($books as $book)
           <div class="item">
             <div class="item-icon">
-              <img src="img/1.jpg" />
+              <img src="{{ $book->image_path }}" />
             </div>
-            <a href="item_detail.html">ハワイアンパラダイス</a><br />
-            <span class="price">Ｍ</span>1,380円(税抜)<br />
-            <span class="price">Ｌ</span>2,380円(税抜)<br />
+            <a href="item_detail.html">{{ $book->name }}</a><br />
+            <span class="price">e-book</span>{{ $book->price_data }}円(税抜)<br />
+            <span class="price">ペーパーブック</span>{{ $book->price_paperbook }}円(税抜)<br />
           </div>
-
-          <div class="item">
-            <div class="item-icon">
-              <img src="img/2.jpg" />
-            </div>
-            <a href="item_detail.html">ハワイアンパラダイス</a><br />
-            <span class="price">Ｍ</span>1,380円(税抜)<br />
-            <span class="price">Ｌ</span>2,380円(税抜)<br />
-          </div>
-
-          <div class="item">
-            <div class="item-icon">
-              <img src="img/3.jpg" />
-            </div>
-            <a href="item_detail.html">ハワイアンパラダイス</a><br />
-            <span class="price">Ｍ</span>1,380円(税抜)<br />
-            <span class="price">Ｌ</span>2,380円(税抜)<br />
-          </div>
-
-          <div class="item">
-            <div class="item-icon">
-              <img src="img/4.jpg" />
-            </div>
-            <a href="item_detail.html">ハワイアンパラダイス</a><br />
-            <span class="price">Ｍ</span>1,380円(税抜)<br />
-            <span class="price">Ｌ</span>2,380円(税抜)<br />
-          </div>
-
-          <div class="item">
-            <div class="item-icon">
-              <img src="img/5.jpg" />
-            </div>
-            <a href="item_detail.html">ハワイアンパラダイス</a><br />
-            <span class="price">Ｍ</span>1,380円(税抜)<br />
-            <span class="price">Ｌ</span>2,380円(税抜)<br />
-          </div>
-
-          <div class="item">
-            <div class="item-icon">
-              <img src="img/6.jpg" />
-            </div>
-            <a href="item_detail.html">ハワイアンパラダイス</a><br />
-            <span class="price">Ｍ</span>1,380円(税抜)<br />
-            <span class="price">Ｌ</span>2,380円(税抜)<br />
-          </div>
-
-          <div class="item">
-            <div class="item-icon">
-              <img src="img/7.jpg" />
-            </div>
-            <a href="item_detail.html">ハワイアンパラダイス</a><br />
-            <span class="price">Ｍ</span>1,380円(税抜)<br />
-            <span class="price">Ｌ</span>2,380円(税抜)<br />
-          </div>
-
-          <div class="item">
-            <div class="item-icon">
-              <img src="img/8.jpg" />
-            </div>
-            <a href="item_detail.html">ハワイアンパラダイス</a><br />
-            <span class="price">Ｍ</span>1,380円(税抜)<br />
-            <span class="price">Ｌ</span>2,380円(税抜)<br />
-          </div>
-
-          <div class="item">
-            <div class="item-icon">
-              <img src="img/9.jpg" />
-            </div>
-            <a href="item_detail.html">ハワイアンパラダイス</a><br />
-            <span class="price">Ｍ</span>1,380円(税抜)<br />
-            <span class="price">Ｌ</span>2,380円(税抜)<br />
-          </div>
-
-          <div class="item">
-            <div class="item-icon">
-              <img src="img/10.jpg" />
-            </div>
-            <a href="item_detail.html">ハワイアンパラダイス</a><br />
-            <span class="price">Ｍ</span>1,380円(税抜)<br />
-            <span class="price">Ｌ</span>2,380円(税抜)<br />
-          </div>
-
-          <div class="item">
-            <div class="item-icon">
-              <img src="img/11.jpg" />
-            </div>
-            <a href="item_detail.html">ハワイアンパラダイス</a><br />
-            <span class="price">Ｍ</span>1,380円(税抜)<br />
-            <span class="price">Ｌ</span>2,380円(税抜)<br />
-          </div>
-
-          <div class="item">
-            <div class="item-icon">
-              <img src="img/12.jpg" />
-            </div>
-            <a href="item_detail.html">ハワイアンパラダイス</a><br />
-            <span class="price">Ｍ</span>1,380円(税抜)<br />
-            <span class="price">Ｌ</span>2,380円(税抜)<br />
-          </div>
-
-          <div class="item">
-            <div class="item-icon">
-              <img src="img/13.jpg" />
-            </div>
-            <a href="item_detail.html">ハワイアンパラダイス</a><br />
-            <span class="price">Ｍ</span>1,380円(税抜)<br />
-            <span class="price">Ｌ</span>2,380円(税抜)<br />
-          </div>
-
-          <div class="item">
-            <div class="item-icon">
-              <img src="img/14.jpg" />
-            </div>
-            <a href="item_detail.html">ハワイアンパラダイス</a><br />
-            <span class="price">Ｍ</span>1,380円(税抜)<br />
-            <span class="price">Ｌ</span>2,380円(税抜)<br />
-          </div>
+          @endforeach
+          
         </div>
       </div>
     </div>
 
+    <div class="row">
+      <div class="col-md-4 offset-md-4">
+        {{$books->links()}}
+      </div>
+    </div>
+
+
     <footer>
       <div class="container">
-        <img src="img/header_logo.png" />
-        <p>アロハな気分をあなたにお届け！</p>
+        <img src="img/header_logo2.jpg" />
+        <p>Let's read books around the world!!</p>
       </div>
     </footer>
     <!-- Compiled and minified JavaScript -->
