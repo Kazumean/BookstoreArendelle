@@ -25,7 +25,7 @@ class BooksSeeder extends Seeder
                 'country_id' => 203,
                 'price_data' => 550,
                 'price_paperbook' => 605,
-                'image_path' => 'kamisamano-boat.jpg',
+                'image_path' => 'img/kamisamano-boat.jpg',
                 'deleted' => false,
             ],
             [
@@ -38,7 +38,7 @@ class BooksSeeder extends Seeder
                 'country_id' => 25,
                 'price_data' => 1300,
                 'price_paperbook' => 1695,
-                'image_path' => 'alice-in-wonderland.jpg',
+                'image_path' => 'img/alice-in-wonderland.jpg',
                 'deleted' => false,
             ],
             [
@@ -51,7 +51,7 @@ class BooksSeeder extends Seeder
                 'country_id' => 5,
                 'price_data' => 1000,
                 'price_paperbook' => 2356,
-                'image_path' => 'the-catcher-in-the-rye.jpg',
+                'image_path' => 'img/the-catcher-in-the-rye.jpg',
                 'deleted' => false,
             ],
             [
@@ -64,7 +64,7 @@ class BooksSeeder extends Seeder
                 'country_id' => 5,
                 'price_data' => 284,
                 'price_paperbook' => 1947,
-                'image_path' => 'gone-with-the-wind.jpg',
+                'image_path' => 'img/gone-with-the-wind.jpg',
                 'deleted' => false,
             ],
             [
@@ -77,7 +77,7 @@ class BooksSeeder extends Seeder
                 'country_id' => 25,
                 'price_data' => 1126,
                 'price_paperbook' => 1418,
-                'image_path' => 'matilda.jpg',
+                'image_path' => 'img/matilda.jpg',
                 'deleted' => false,
             ],
             [
@@ -90,7 +90,7 @@ class BooksSeeder extends Seeder
                 'country_id' => 203,
                 'price_data' => 950,
                 'price_paperbook' => 990,
-                'image_path' => 'soshite-baton-ha-watasareta.jpg',
+                'image_path' => 'img/soshite-baton-ha-watasareta.jpg',
                 'deleted' => false,
             ],
             [
@@ -103,7 +103,7 @@ class BooksSeeder extends Seeder
                 'country_id' => 203,
                 'price_data' => 1500,
                 'price_paperbook' => 1760,
-                'image_path' => 'hakko-ha-omakase.jpg',
+                'image_path' => 'img/hakko-ha-omakase.jpg',
                 'deleted' => false,
             ],
             [
@@ -116,7 +116,7 @@ class BooksSeeder extends Seeder
                 'country_id' => 203,
                 'price_data' => 1584,
                 'price_paperbook' => 1760,
-                'image_path' => 'serenade.jpg',
+                'image_path' => 'img/serenade.jpg',
                 'deleted' => false,
             ],
             [
@@ -129,7 +129,7 @@ class BooksSeeder extends Seeder
                 'country_id' => 203,
                 'price_data' => 772,
                 'price_paperbook' => 902,
-                'image_path' => 'Finland-no-kyouiku-ha-nazesekaiichinanoka.jpg',
+                'image_path' => 'img/Finland-no-kyouiku-ha-nazesekaiichinanoka.jpg',
                 'deleted' => false,
             ],
         ]);
