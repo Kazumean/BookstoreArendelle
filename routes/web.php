@@ -29,3 +29,6 @@ require __DIR__.'/auth.php';
 //商品一覧を表示する
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 
+//商品詳細を表示する
+Route::get('/books/show/{book}', [BookController::class, 'show'])->name('book.show');
+

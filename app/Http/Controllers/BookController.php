@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Pagination\Paginator;
 
 class BookController extends Controller
@@ -16,6 +17,7 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::paginate(6);
+        $category_name = Book::find(1)->category;
         
         return view('item_list', compact('books'));
     }
@@ -27,9 +29,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
     }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -40,16 +41,19 @@ class BookController extends Controller
     {
         //
     }
-
+    
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Book $book)
     {
-        //
+        $categories = Category::all();
+    
+        return view('item_detail', compact('book'))
+            ->with('categories', $categories);
     }
 
     /**
