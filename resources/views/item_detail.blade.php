@@ -58,25 +58,33 @@
       </div>
     </header>
     <div class="top-wrapper">
+      {{-- @foreach($books as $book) --}}
       <div class="container">
-        <h1 class="page-title">{{ $book->name }}</h1>
+        <h1 class="page-title">{{ $book->book_name }}</h1>
         <div class="row">
           <div class="row item-detail">
             <div class="item-icon">
               <img src="{{ asset($book->image_path) }}" />
             </div>
             <div class="row item-intro">
-              <div class="item-hedding">著者名</div>
-              <div>
+              <span class="item-hedding">著者名：</span>
+              <span>
                 {{ $book->author_name }}
-              </div>
-              <div class="item-hedding">カテゴリー</div>
-              <div>
+              </span><br>
+              <span class="item-hedding">カテゴリー：</span>
+              <span>
                 {{ $book->category_name }}
+              </span><br>
+              <span class="item-hedding">出版国：</span>
+                <span>
+                  {{ $book->country_name }}
+                </span>
+              </span>
+              <div class="item-hedding">あらすじ</div>
+                <span>
+                  {{ $book->description }}
+                </span>
               </div>
-            </div>
-            <div class="item-intro">
-              {{ $book->description }}
             </div>
           </div>
           
@@ -87,111 +95,112 @@
                 <input id="size-m" name="size" type="radio" checked="checked" />
                 <span>
                   &nbsp;<span class="price">e-book</span
-                  >&nbsp;&nbsp;{{ number_format($book->price_data) }}円(税抜)</span
-                >
-              </label>
-              <label>
-                <input id="size-l" name="size" type="radio" />
-                <span>
-                  &nbsp;<span class="price">ペーパーブック</span
-                  >&nbsp;&nbsp;{{ number_format($book->price_paperbook) }}円(税抜)</span
-                >
-              </label>
-            </div>
-          </div>
-
-          {{-- <div class="row item-toppings">
-            <div class="item-hedding">
-              トッピング：&nbsp;1つにつき
-              <span>&nbsp;Ｍ&nbsp;</span>&nbsp;&nbsp;200円(税抜)
-              <span>&nbsp;Ｌ</span>&nbsp;&nbsp;300円(税抜)
-            </div>
-            <div> --}}
-              {{-- <label class="item-topping">
-                <input type="checkbox" />
-                <span>ハワイアンソルト</span>
-              </label>
-              <label class="item-topping">
-                <input type="checkbox" />
-                <span>ハワイアンマヨネーズ</span>
-              </label>
-              <label class="item-topping">
-                <input type="checkbox" />
-                <span>ハワイアントマト</span>
-              </label>
-              <label class="item-topping">
-                <input type="checkbox" />
-                <span>ブルーチーズ</span>
-              </label>
-              <label class="item-topping">
-                <input type="checkbox" />
-                <span>ハワイアンチョコレート</span>
-              </label>
-              <label class="item-topping">
-                <input type="checkbox" />
-                <span>アンチョビ</span>
-              </label>
-              <label class="item-topping">
-                <input type="checkbox" />
-                <span>エビ</span>
-              </label>
-              <label class="item-topping">
-                <input type="checkbox" />
-                <span>ガーリックスライス</span>
-              </label>
-              <label class="item-topping">
-                <input type="checkbox" />
-                <span>トロピカルフルーツ</span>
-              </label>
-              <label class="item-topping">
-                <input type="checkbox" />
-                <span>ココナッツ</span>
-              </label>
-            </div>
-          </div> --}}
-          <div class="row item-quantity">
-            <div class="item-hedding item-hedding-quantity">数量</div>
-            <div class="item-quantity-selectbox">
-              <div class="input-field col s12">
-                <select class="browser-default">
-                  <option value="" disabled selected>選択して下さい</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                  <option value="11">11</option>
-                  <option value="12">12</option>
-                </select>
+                    >&nbsp;&nbsp;{{ number_format($book->price_data) }}円(税抜)</span
+                    >
+                  </label>
+                  <label>
+                    <input id="size-l" name="size" type="radio" />
+                    <span>
+                      &nbsp;<span class="price">ペーパーブック</span
+                        >&nbsp;&nbsp;{{ number_format($book->price_paperbook) }}円(税抜)</span
+                        >
+                      </label>
+                    </div>
+                  </div>
+                  
+                  {{-- <div class="row item-toppings">
+                    <div class="item-hedding">
+                      トッピング：&nbsp;1つにつき
+                      <span>&nbsp;Ｍ&nbsp;</span>&nbsp;&nbsp;200円(税抜)
+                      <span>&nbsp;Ｌ</span>&nbsp;&nbsp;300円(税抜)
+                    </div>
+                    <div> --}}
+                      {{-- <label class="item-topping">
+                        <input type="checkbox" />
+                        <span>ハワイアンソルト</span>
+                      </label>
+                      <label class="item-topping">
+                        <input type="checkbox" />
+                        <span>ハワイアンマヨネーズ</span>
+                      </label>
+                      <label class="item-topping">
+                        <input type="checkbox" />
+                        <span>ハワイアントマト</span>
+                      </label>
+                      <label class="item-topping">
+                        <input type="checkbox" />
+                        <span>ブルーチーズ</span>
+                      </label>
+                      <label class="item-topping">
+                        <input type="checkbox" />
+                        <span>ハワイアンチョコレート</span>
+                      </label>
+                      <label class="item-topping">
+                        <input type="checkbox" />
+                        <span>アンチョビ</span>
+                      </label>
+                      <label class="item-topping">
+                        <input type="checkbox" />
+                        <span>エビ</span>
+                      </label>
+                      <label class="item-topping">
+                        <input type="checkbox" />
+                        <span>ガーリックスライス</span>
+                      </label>
+                      <label class="item-topping">
+                        <input type="checkbox" />
+                        <span>トロピカルフルーツ</span>
+                      </label>
+                      <label class="item-topping">
+                        <input type="checkbox" />
+                        <span>ココナッツ</span>
+                      </label>
+                    </div>
+                  </div> --}}
+                  <div class="row item-quantity">
+                    <div class="item-hedding item-hedding-quantity">数量</div>
+                    <div class="item-quantity-selectbox">
+                      <div class="input-field col s12">
+                        <select class="browser-default">
+                          <option value="" disabled selected>選択して下さい</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                          <option value="11">11</option>
+                          <option value="12">12</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row item-total-price">
+                    <span>この商品金額：38,000 円(税抜)</span>
+                  </div>
+                  <div class="row item-cart-btn">
+                    <button
+                    class="btn"
+                    type="button"
+                    onclick="location.href='cart_list.html'"
+                    >
+                    <i class="material-icons left">add_shopping_cart</i>
+                    <span>カートに入れる</span>
+                  </button>
+                </div>
               </div>
             </div>
+            <!-- end container -->
           </div>
-          <div class="row item-total-price">
-            <span>この商品金額：38,000 円(税抜)</span>
-          </div>
-          <div class="row item-cart-btn">
-            <button
-              class="btn"
-              type="button"
-              onclick="location.href='cart_list.html'"
-            >
-              <i class="material-icons left">add_shopping_cart</i>
-              <span>カートに入れる</span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <!-- end container -->
-    </div>
-    <!-- end top-wrapper -->
-    <footer>
-      <div class="container">
-        <img src="{{ asset('img/header_logo2.jpg') }}" />
+          {{-- @endforeach --}}
+          <!-- end top-wrapper -->
+          <footer>
+            <div class="container">
+              <img src="{{ asset('img/header_logo2.jpg') }}" />
         <p>Let's read books around the world!!</p>
       </div>
     </footer>

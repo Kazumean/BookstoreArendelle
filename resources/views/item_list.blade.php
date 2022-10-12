@@ -78,7 +78,7 @@
           @foreach ($books as $book)
           <div class="item">
             <div class="item-icon">
-              <img src="{{ $book->image_path }}" />
+              <a href="{{ route('book.show', $book->id) }}"><img src="{{ $book->image_path }}" /></a>
             </div>
             <a href="{{ route('book.show', $book->id) }}">{{ $book->name }}</a><br />
             <span class="price">e-book</span>{{ number_format($book->price_data) }}円(税抜)<br />

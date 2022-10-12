@@ -16,10 +16,9 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::paginate(6);
-        $category_name = Book::find(1)->category;
+        // $books = Book::paginate(6);
         
-        return view('item_list', compact('books'));
+        // return view('item_list', compact('books'));
     }
 
     /**

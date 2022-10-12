@@ -1,14 +1,23 @@
 <?php
 
-namespace App\Models;
+namespace App\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 
-class Book extends Model
+class ShowBookDetailController extends Controller
 {
-    use HasFactory;
+    /**
+     * 本の詳細を表示する.
+     */
+    public function showDetail($book_id) {
+        $book = Book::find($book_id)->getCategoriesAndCountries();
+        // dd($book);
+    
+        return view('item_detail', compact('book'));
+    }
 
     /**
      * BooksテーブルとCategoriesテーブルとCountriesテーブルを結合する.
