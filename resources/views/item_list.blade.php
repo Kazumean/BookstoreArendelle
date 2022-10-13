@@ -37,7 +37,7 @@
       <div class="container">
         <div class="header">
           <div class="header-left">
-            <a href="top.html">
+            <a href="{{ route('show.top') }}">
               <img class="logo" src="img/header_logo2.jpg" />
             </a>
           </div>

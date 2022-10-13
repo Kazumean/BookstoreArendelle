@@ -5,10 +5,11 @@
    ======================================== */
 .top-wrapper {
   padding: 180px 0 100px 0; /* 上はヘッダが来るのでその分180px分空ける */
-  background-image: url(../img/hawaii_top.jpeg); /* 背景画像設定 */
+  background-image: url(../img/library.jpg); /* 背景画像設定 */
   background-size: cover; /*画像の縦横比を崩すことなく、画像ができるだけ大きくなるよう拡大縮小*/
-  color: white;
+  color: #b0e0e6;
   text-align: center;
+  opacity: 0.9;
 }
 
 .top-wrapper h1 {
@@ -18,7 +19,7 @@
 }
 
 .top-wrapper p {
-  opacity: 0.7; /* 文字の透明度を指定 */
+  opacity: 1.0; /* 文字の透明度を指定 */
 }
 
 .btn-wrapper {
@@ -96,7 +97,7 @@
   position: absolute; /* item-iconからpを位置指定するための指定 */
   top: 35%;
   width: 100%;
-  color: red;
+  color: #00ced1;
 }
 
 .top-item-icon img {
