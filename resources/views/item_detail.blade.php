@@ -58,7 +58,7 @@
       </div>
     </header>
     <div class="top-wrapper">
-      {{-- @foreach($books as $book) --}}
+      @foreach($books as $book)
       <div class="container">
         <h1 class="page-title">{{ $book->book_name }}</h1>
         <div class="row">
@@ -196,7 +196,7 @@
             </div>
             <!-- end container -->
           </div>
-          {{-- @endforeach --}}
+          @endforeach
           <!-- end top-wrapper -->
           <footer>
             <div class="container">
