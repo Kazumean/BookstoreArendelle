@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ShowTopPageController;
 use App\Http\Controllers\ShowBooksController;
 use App\Http\Controllers\ShowBookDetailController;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,8 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+//トップ画面を表示する
+Route::get('/top', [ShowTopPageController::class, 'showTopPage'])->name('show.top');
 
 //商品一覧を表示する
 Route::get('/books', [ShowBooksController::class, 'showBooks'])->name('books.index');
