@@ -36,3 +36,5 @@ Route::get('/books', [ShowBooksController::class, 'showBooks'])->name('books.ind
 //商品詳細を表示する
 Route::get('/books/show/{book}', [ShowBookDetailController::class, 'showDetail'])->name('book.show');
 
+//商品をカートに追加する
+
