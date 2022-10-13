@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('image_path');
             $table->boolean('deleted');
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

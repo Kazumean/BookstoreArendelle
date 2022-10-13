@@ -78,11 +78,11 @@
           @foreach ($books as $book)
           <div class="item">
             <div class="item-icon">
-              <img src="{{ $book->image_path }}" />
+              <a href="{{ route('book.show', $book->id) }}"><img src="{{ $book->image_path }}" /></a>
             </div>
-            <a href="item_detail.html">{{ $book->name }}</a><br />
-            <span class="price">e-book</span>{{ $book->price_data }}円(税抜)<br />
-            <span class="price">ペーパーブック</span>{{ $book->price_paperbook }}円(税抜)<br />
+            <a href="{{ route('book.show', $book->id) }}">{{ $book->name }}</a><br />
+            <span class="price">e-book</span>{{ number_format($book->price_data) }}円(税抜)<br />
+            <span class="price">ペーパーブック</span>{{ number_format($book->price_paperbook) }}円(税抜)<br />
           </div>
           @endforeach
           

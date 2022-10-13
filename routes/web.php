@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\BookController;
+use App\Http\Controllers\ShowBooksController;
+use App\Http\Controllers\ShowBookDetailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -27,5 +28,8 @@ require __DIR__.'/auth.php';
 
 
 //商品一覧を表示する
-Route::get('/books', [BookController::class, 'index'])->name('books.index');
+Route::get('/books', [ShowBooksController::class, 'showBooks'])->name('books.index');
+
+//商品詳細を表示する
+Route::get('/books/show/{book}', [ShowBookDetailController::class, 'showDetail'])->name('book.show');
 
