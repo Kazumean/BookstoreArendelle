@@ -16,35 +16,35 @@
       href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/common.css" />
-    <link rel="stylesheet" href="css/header.css" />
-    <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/register_admin.css" />
-    <link rel="stylesheet" href="css/login.css" />
-    <link rel="stylesheet" href="css/item_list.css" />
-    <link rel="stylesheet" href="css/item_detail.css" />
-    <link rel="stylesheet" href="css/cart_list.css" />
-    <link rel="stylesheet" href="css/order_confirm.css" />
-    <link rel="stylesheet" href="css/order_finished.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/register_admin.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/item_list.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/item_detail.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/cart_list.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/order_confirm.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/order_finished.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ラクラクアロハ</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
   </head>
   <body>
     <header>
       <div class="container">
         <div class="header">
           <div class="header-left">
-            <a href="top.html">
-              <img class="logo" src="img/header_logo.png" />
+            <a href="{{ route('show.top') }}">
+              <img class="logo" src="{{ asset('img/header_logo2.jpg') }}" />
             </a>
           </div>
 
           <div class="header-right">
-            <a href="item_list.html">商品一覧</a>
-            <a href="register_admin.html">会員登録</a>
+            <a href="{{ route('books.index') }}">商品一覧</a>
+            <a href="{{ route('register_user') }}">会員登録</a>
             <a href="#"><i class="fas fa-shopping-cart"></i>カート</a>
             <a href="login.html" class="login">
               <i class="fas fa-sign-in-alt"></i>ログイン
@@ -64,62 +64,12 @@
             <thead>
               <tr>
                 <th class="cart-table-th">商品名</th>
-                <th>サイズ、価格(税抜)、数量</th>
+                <th>タイプ、価格(税抜)、数量</th>
                 <th>トッピング、価格(税抜)</th>
                 <th>小計</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="cart-item-name">
-                  <div class="cart-item-icon">
-                    <img src="img/1.jpg" />
-                  </div>
-                  <span>ハワイアンパラダイス</span>
-                </td>
-                <td>
-                  <span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;2,380円
-                  &nbsp;&nbsp;1個
-                </td>
-                <td>
-                  <ul>
-                    <li>ピーマン300円</li>
-                    <li>オニオン300円</li>
-                    <li>あらびきソーセージ300円</li>
-                  </ul>
-                </td>
-                <td><div class="text-center">3,280円</div></td>
-                <td>
-                  <button class="btn" type="button">
-                    <span>削除</span>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td class="cart-item-name">
-                  <div class="cart-item-icon">
-                    <img src="img/1.jpg" />
-                  </div>
-                  <span>ハワイアンパラダイス</span>
-                </td>
-                <td>
-                  <span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;2,380円
-                  &nbsp;&nbsp;1個
-                </td>
-                <td>
-                  <ul>
-                    <li>ピーマン300円</li>
-                    <li>オニオン300円</li>
-                    <li>あらびきソーセージ300円</li>
-                  </ul>
-                </td>
-                <td><div class="text-center">3,280円</div></td>
-                <td>
-                  <button class="btn" type="button">
-                    <span>削除</span>
-                  </button>
-                </td>
-              </tr>
               <tr>
                 <td class="cart-item-name">
                   <div class="cart-item-icon">
@@ -168,8 +118,8 @@
     <!-- end top-wrapper -->
     <footer>
       <div class="container">
-        <img src="img/header_logo.png" />
-        <p>アロハな気分をあなたにお届け！</p>
+        <img src="{{ asset('img/header_logo2.jpg') }}" />
+        <p>Let's read books around the world!!</p>
       </div>
     </footer>
     <!-- Compiled and minified JavaScript -->
