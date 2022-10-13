@@ -58,6 +58,7 @@
       </div>
     </header>
     <div class="top-wrapper">
+      <form action="{{ route('book.showCart') }}">
       @foreach($books as $book)
       <div class="container">
         <h1 class="page-title">{{ $book->book_name }}</h1>
@@ -185,8 +186,7 @@
                   <div class="row item-cart-btn">
                     <button
                     class="btn"
-                    type="button"
-                    onclick="location.href='cart_list.html'"
+                    type="submit"
                     >
                     <i class="material-icons left">add_shopping_cart</i>
                     <span>カートに入れる</span>
@@ -197,6 +197,7 @@
             <!-- end container -->
           </div>
           @endforeach
+        </form>
           <!-- end top-wrapper -->
           <footer>
             <div class="container">

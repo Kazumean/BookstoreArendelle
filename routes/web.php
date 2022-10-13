@@ -3,6 +3,7 @@
 use App\Http\Controllers\ShowTopPageController;
 use App\Http\Controllers\ShowBooksController;
 use App\Http\Controllers\ShowBookDetailController;
+use App\Http\Controllers\ShowCartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -35,6 +36,9 @@ Route::get('/books', [ShowBooksController::class, 'showBooks'])->name('books.ind
 
 //商品詳細を表示する
 Route::get('/books/show/{book}', [ShowBookDetailController::class, 'showDetail'])->name('book.show');
+
+//カート画面を表示する
+Route::get('/showCart', [ShowCartController::class, 'showCart'])->name('book.showCart');
 
 //商品をカートに追加する
 
