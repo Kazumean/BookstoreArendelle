@@ -179,9 +179,9 @@
                       </div>
                     </div>
                   </div>
-                  <div class="row item-total-price">
-                    <span>この商品金額：38,000 円(税抜)</span>
-                  </div>
+                  {{-- <div class="row item-total-price">
+                    <span>この商品金額：{{ $book->price_data }}</span> 円(税抜)</span>
+                  </div> --}}
                   <div class="row item-cart-btn">
                     <button
                     class="btn"
