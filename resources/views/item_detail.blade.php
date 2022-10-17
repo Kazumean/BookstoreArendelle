@@ -58,7 +58,8 @@
       </div>
     </header>
     <div class="top-wrapper">
-      <form action="{{ route('book.showCart') }}">
+      <form action="{{ route('book.addItem') }}" method="POST">
+        @csrf
       @foreach($books as $book)
       <div class="container">
         <h1 class="page-title">{{ $book->book_name }}</h1>
@@ -93,14 +94,14 @@
             <div class="item-hedding">タイプ</div>
             <div>
               <label>
-                <input id="size-m" name="size" type="radio" checked="checked" />
+                <input id="size-m" name="size" type="radio" value="e-book" checked="checked" />
                 <span>
                   &nbsp;<span class="price">e-book</span
                     >&nbsp;&nbsp;{{ number_format($book->price_data) }}円(税抜)</span
                     >
                   </label>
                   <label>
-                    <input id="size-l" name="size" type="radio" />
+                    <input id="size-l" name="size" type="radio" value="paperBook"/>
                     <span>
                       &nbsp;<span class="price">ペーパーブック</span
                         >&nbsp;&nbsp;{{ number_format($book->price_paperbook) }}円(税抜)</span
