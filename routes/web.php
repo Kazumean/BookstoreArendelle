@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddItemController;
+use App\Http\Controllers\DeleteItemController;
 use App\Http\Controllers\ShowTopPageController;
 use App\Http\Controllers\ShowBooksController;
 use App\Http\Controllers\ShowBookDetailController;
@@ -43,3 +44,6 @@ Route::get('/showCart', [ShowCartController::class, 'showCart'])->name('book.sho
 
 //商品をカートに追加する
 Route::post('/addItem', [AddItemController::class, 'addItem'])->name('book.addItem');
+
+//カートから商品を削除する
+Route::delete('/deleteItem/{book}', [DeleteItemController::class, 'deleteItem'])->name('book.deleteItem');

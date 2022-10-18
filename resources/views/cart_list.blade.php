@@ -121,9 +121,13 @@
                 @endif
 
                 <td>
-                  <button class="btn" type="button">
-                    <span>削除</span>
-                  </button>
+                  <form action="{{ route('book.deleteItem', $order->order_item_id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                      <button class="btn" type="submit" onclick='return confirm("削除しますか？");'>
+                        <span>削除</span>
+                      </button>
+                  </form>
                 </td>
               </tr>
               @endforeach
