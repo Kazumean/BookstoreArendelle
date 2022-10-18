@@ -44,10 +44,13 @@
           </div>
 
           <div class="header-right">
-            <a href="item_list.html">商品一覧</a>
-            <a th:href="@{/toInsert}">会員登録</a>
-            <a th:href="@{/toLogin}" class="login">
+            <a href="{{ route('books.index') }}">商品一覧</a>
+            <a href="{{ route('register_user') }}">会員登録</a>
+            <a href="{{ route('login_user')}}" class="login">
               <i class="fas fa-sign-in-alt"></i>ログイン
+            </a>
+            <a>
+              <i class="fas fa-solid fa-user"></i>{{ $user_name }}さん
             </a>
           </div>
         </div>

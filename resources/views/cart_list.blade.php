@@ -51,6 +51,9 @@
             </a>
 
             <a href="order_history.html">注文履歴</a>
+            <a>
+              <i class="fas fa-solid fa-user"></i>{{ $user_name }}さん
+            </a>
           </div>
         </div>
       </div>
