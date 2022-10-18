@@ -57,6 +57,6 @@ class RegisteredUserController extends Controller
 
         // Auth::login($user);
 
-        return redirect()->route('login_user');
+        return redirect()->route('login_user')->with('user_name', \Auth::user()->name);
     }
 }

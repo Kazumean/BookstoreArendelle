@@ -17,7 +17,7 @@ class ShowBookDetailController extends Controller
         $books = $this->getCategoriesAndCountries($books);
         // dd($book);
     
-        return view('item_detail', compact('books'));
+        return view('item_detail', compact('books'))->with('user_name', \Auth::user()->name);
     }
 
     /**

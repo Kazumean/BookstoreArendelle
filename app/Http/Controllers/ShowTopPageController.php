@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class ShowTopPageController extends Controller
 {
     public function showTopPage() {
-        return view('top');
+        return view('top')->with('user_name', \Auth::user()->name);
     }
 }

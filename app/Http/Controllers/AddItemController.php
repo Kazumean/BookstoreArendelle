@@ -51,7 +51,7 @@ class AddItemController extends Controller
             }
         }
 
-        return redirect('/showCart');
+        return redirect('/showCart')->with('user_name', \Auth::user()->name);
     }
     /**
      * order_itemsテーブルにデータを追加する. 

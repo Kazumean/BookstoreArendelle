@@ -17,7 +17,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        return view('login_user');
+        return view('login_user')->with('user_name', \Auth::user()->name);
     }
 
     /**
@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('show.top');
+        return redirect()->route('show.top')->with('user_name', \Auth::user()->name);
     }
 
     /**
