@@ -10,6 +10,6 @@ class ShowBooksController extends Controller
     public function showBooks() {
         $books = Book::latest()->paginate(6);
 
-        return view('item_list', compact('books'))->with('user_name', \Auth::user()->name);
+        return view('item_list', compact('books'));
     }
 }

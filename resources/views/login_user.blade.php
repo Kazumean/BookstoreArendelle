@@ -46,12 +46,6 @@
           <div class="header-right">
             <a href="{{ route('books.index') }}">商品一覧</a>
             <a href="{{ route('register_user') }}">会員登録</a>
-            {{-- <a href="login.html" class="login">
-              <i class="fas fa-sign-in-alt"></i>ログイン
-            </a> --}}
-            <a>
-              <i class="fas fa-solid fa-user"></i>{{ $user_name }}さん
-            </a>
           </div>
         </div>
       </div>

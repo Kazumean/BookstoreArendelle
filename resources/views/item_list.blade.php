@@ -48,14 +48,30 @@
             <a href="{{ route('book.showCart') }}">
               <i class="fas fa-shopping-cart"> </i>カート
             </a>
+            
+            @if(Auth::check())
+            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <i class="fas fa-sign-out-alt"></i>ログアウト
+            </a>
+            <form id="logout-form" action="{{ route('logout_user') }}" method="POST">
+              @csrf
+            </form>
+            <a href="order_history.html">注文履歴</a>
+            @else
             <a href="{{ route('login_user') }}" class="login">
               <i class="fas fa-sign-in-alt"></i>ログイン
             </a>
+            @endif
 
-            <a href="order_history.html">注文履歴</a>
+            @if (Auth::check())
             <a>
-              <i class="fas fa-solid fa-user"></i>{{ $user_name }}さん
+              <i class="fas fa-solid fa-user"></i>{{ Auth::user()->name }}さん
             </a>
+            @else
+            <a>
+              <i class="fas fa-solid fa-user"></i>ゲストユーザーさん
+            </a>
+            @endif
           </div>
         </div>
       </div>

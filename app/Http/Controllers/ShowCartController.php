@@ -11,7 +11,7 @@ class ShowCartController extends Controller
 
         $orderAndOrderItemAndBook = $this->getOrderAndOrderItemAndBook();
 
-        return view('cart_list', ['orders' => $orderAndOrderItemAndBook])->with('user_name', \Auth::user()->name);
+        return view('cart_list', ['orders' => $orderAndOrderItemAndBook]);
     }
 
     //OrdersテーブルとOrderItemsテーブルとBooksテーブルを結合する.
