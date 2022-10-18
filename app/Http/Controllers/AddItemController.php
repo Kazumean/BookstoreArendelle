@@ -4,13 +4,52 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Order_item;
+use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AddItemController extends Controller
 {
     public function addItem(Request $request) {
-        $order = null;
-        $this->saveOrderItem($request, $order);
+        $user = Auth::user();
+
+        //userがログインしているかどうかを判定する
+        if ($user) {
+            //orderの作成 or 取得
+            $userId = $user->id;
+            $order = null;
+            $order = Order::where(['user_id' => $userId, 'status' => 0])->first();
+
+            if ($order = null) {
+                $this->saveOrder($request, $userId);
+                $order = Order::where(['user_id' => $userId, 'status' => 0])->first();
+            }
+            $this->saveOrderItem($request, $order);
+            // $this->setTotalPrice($userId);
+        } else {
+            //orderフィールドがあるかどうか
+            $order = Order::find(session()->get('orderId'));
+            if ($order) {
+                //orderがあるとき
+                $this->saveOrderItem($request, $order);
+                // $this->setTotalPrice($order->user_id);
+            } else {
+                //orderがないとき
+                //仮のuser_idを作成
+                $userId = null;
+                do {
+                    $userId = rand($min = -99999999, $max = -10000000);
+                    $tmpOrder = Order::where('user_id', $userId)->first();
+                } while ($tmpOrder != null);
+                $this->saveOrder($request, $userId);
+                $order = Order::where('user_id', $userId)->first();
+                $this->saveOrderItem($request, $order);
+                // $this->setTotalPrice($userId);
+                $request->session()->put('orderId', $order->id);
+                $request->session()->put('tempUserId', $userId);
+            }
+        }
 
         return redirect('/showCart');
     }
@@ -32,6 +71,7 @@ class AddItemController extends Controller
         $order->user_id = $userId;
         $order->status = $status;
         $item = Book::find($request->item_id);
+        // dd($item);
 
         if($request->type == 'e-book') {
             $order->total_price = $item->price_data * $request->quantity;
