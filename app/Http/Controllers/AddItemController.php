@@ -26,14 +26,14 @@ class AddItemController extends Controller
                 $order = Order::where(['user_id' => $userId, 'status' => 0])->first();
             }
             $this->saveOrderItem($request, $order);
-            // $this->setTotalPrice($userId);
+            $this->setTotalPrice($userId);
         } else {
             //orderフィールドがあるかどうか
             $order = Order::find(session()->get('orderId'));
             if ($order) {
                 //orderがあるとき
                 $this->saveOrderItem($request, $order);
-                // $this->setTotalPrice($order->user_id);
+                $this->setTotalPrice($order->user_id);
             } else {
                 //orderがないとき
                 //仮のuser_idを作成
@@ -45,7 +45,7 @@ class AddItemController extends Controller
                 $this->saveOrder($request, $userId);
                 $order = Order::where('user_id', $userId)->first();
                 $this->saveOrderItem($request, $order);
-                // $this->setTotalPrice($userId);
+                $this->setTotalPrice($userId);
                 $request->session()->put('orderId', $order->id);
                 $request->session()->put('tempUserId', $userId);
             }
@@ -53,8 +53,9 @@ class AddItemController extends Controller
 
         return redirect('/showCart');
     }
-
-    //order_itemsテーブルにデータを追加する.
+    /**
+     * order_itemsテーブルにデータを追加する. 
+     */
     public function saveOrderItem($request, $order) {
         $orderItem = new Order_item();
         $orderItem->item_id = $request->item_id;
@@ -65,7 +66,9 @@ class AddItemController extends Controller
         $orderItem->save();
     }
 
-    //ordersテーブルにデータを追加する.
+    /**
+     * ordersテーブルにデータを追加する.
+     */
     public function saveOrder($request, $userId, $status = 0) {
         $order = new Order();
         $order->user_id = $userId;
@@ -82,7 +85,9 @@ class AddItemController extends Controller
         $order->save();
     }
 
-    //OrdersテーブルとOrderItemsテーブルとBooksテーブルを結合する.
+    /**
+     * OrdersテーブルとOrderItemsテーブルとBooksテーブルを結合する.
+     */
     public function getOrderAndOrderItemAndBook($userId, $status = 0) {
         $getOrderAndOrderItemAndBook = DB::table('orders as o')
         ->rightJoin('order_items as oi', 'o.id', '=', 'oi.order_id')
@@ -93,5 +98,26 @@ class AddItemController extends Controller
         ->get();
 
         return $getOrderAndOrderItemAndBook;
+    }
+
+    /**
+     * Ordersテーブルのtotal_priceに値をセットする.
+     */
+    public function setTotalPrice($userId) {
+        //total_priceの更新
+        $orderInfo = $this->getOrderAndOrderItemAndBook($userId);
+        $totalPrice = 0;
+
+        foreach($orderInfo as $order) {
+            if ($order->type == 'e-book') {
+                $price = $order->price_data;
+            } else {
+                $price = $order->price_paperbook;
+            }
+            $totalPrice += $price * $order->quantity;
+        }
+        $order = Order::where(['user_id' => $userId, 'status' => 0])->first();
+        $order->total_price = $totalPrice;
+        $order->save();
     }
 }

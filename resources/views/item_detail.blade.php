@@ -48,7 +48,7 @@
             <a href="cart_list.html">
               <i class="fas fa-shopping-cart"> </i>カート
             </a>
-            <a href="login.html" class="login">
+            <a href="{{ route('login_user') }}" class="login">
               <i class="fas fa-sign-in-alt"></i>ログイン
             </a>
 

@@ -79,7 +79,12 @@
                   <span>{{ $order->name }}</span>
                 </td>
                 <td>
-                  <span class="price">&nbsp;{{ $order->type }}</span>&nbsp;&nbsp;{{ $order->total_price }}円
+                  <span class="price">&nbsp;{{ $order->type }}</span>
+                  @if ($order->type == 'e-book')
+                  &nbsp;&nbsp;{{ number_format($order->price_data) }}円
+                  @else
+                  &nbsp;&nbsp;{{ number_format($order->price_paperbook) }}円
+                  @endif
                   &nbsp;&nbsp;{{ $order->quantity }}個
                 </td>
                 {{-- <td>
@@ -89,7 +94,13 @@
                     <li>あらびきソーセージ300円</li>
                   </ul>
                 </td> --}}
-                <td><div class="text-center">3,280円</div></td>
+
+                @if ($order->type == 'e-book')
+                <td><div class="text-center">{{ number_format($order->price_data * $order->quantity) }}円</div></td>
+                @else
+                <td><div class="text-center">{{ number_format($order->price_paperbook * $order->quantity) }}円</div></td>
+                @endif
+
                 <td>
                   <button class="btn" type="button">
                     <span>削除</span>
@@ -101,10 +112,21 @@
           </table>
         </div>
 
-        <div class="row cart-total-price">
-          <div>消費税：8,000円</div>
-          <div>ご注文金額合計：38,000円 (税込)</div>
-        </div>
+        <?php
+        $totalPrice = 0;
+        foreach ($orders as $order) {
+          $totalPrice += $order->total_price;
+        }
+        $tax = $totalPrice * 0.1;
+        $taxIncludedPrice = $totalPrice + $tax;
+        $commaTax = number_format($tax);
+        $commaTaxIncludedPrice = number_format($taxIncludedPrice);
+        echo '<div class="row cart-total-price">';
+        echo  "<div>消費税：{$commaTax}円</div>";
+        echo  "<div>ご注文金額合計：{$commaTaxIncludedPrice}円 (税込)</div>";
+        echo '</div>';
+        ?>
+
         <div class="row order-confirm-btn">
           <button
             class="btn"
