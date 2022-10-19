@@ -23,13 +23,14 @@ class AddItemController extends Controller
 
             if ($order = null) {
                 $this->saveOrder($request, $userId);
-                $order = Order::where(['user_id' => $userId, 'status' => 0])->first();
+                $order = Order::where('user_id', $userId)->where('status', 0)->first();
             }
+            dd($order);
             $this->saveOrderItem($request, $order);
             $this->setTotalPrice($userId);
         } else {
             //orderフィールドがあるかどうか
-            $order = Order::find(session()->get('orderId'));
+            $order = Order::find(session()->get('order_id'));
             if ($order) {
                 //orderがあるとき
                 $this->saveOrderItem($request, $order);
@@ -46,18 +47,19 @@ class AddItemController extends Controller
                 $order = Order::where('user_id', $userId)->first();
                 $this->saveOrderItem($request, $order);
                 $this->setTotalPrice($userId);
-                $request->session()->put('orderId', $order->id);
+                $request->session()->put('order_id', $order->id);
                 $request->session()->put('tempUserId', $userId);
             }
         }
 
         return redirect('/showCart');
     }
-    /**
-     * order_itemsテーブルにデータを追加する. 
-     */
+    // /**
+    //  * order_itemsテーブルにデータを追加する. 
+    //  */
     public function saveOrderItem($request, $order) {
         $orderItem = new Order_item();
+        // dd($order);
         $orderItem->item_id = $request->item_id;
         $orderItem->order_id = $order->id;
         $orderItem->quantity = $request->quantity;
@@ -66,15 +68,14 @@ class AddItemController extends Controller
         $orderItem->save();
     }
 
-    /**
-     * ordersテーブルにデータを追加する.
-     */
+    // /**
+    //  * ordersテーブルにデータを追加する.
+    //  */
     public function saveOrder($request, $userId, $status = 0) {
         $order = new Order();
         $order->user_id = $userId;
         $order->status = $status;
         $item = Book::find($request->item_id);
-        // dd($item);
 
         if($request->type == 'e-book') {
             $order->total_price = $item->price_data * $request->quantity;
@@ -85,14 +86,14 @@ class AddItemController extends Controller
         $order->save();
     }
 
-    /**
-     * OrdersテーブルとOrderItemsテーブルとBooksテーブルを結合する.
-     */
+    // /**
+    //  * OrdersテーブルとOrderItemsテーブルとBooksテーブルを結合する.
+    //  */
     public function getOrderAndOrderItemAndBook($userId, $status = 0) {
         $getOrderAndOrderItemAndBook = DB::table('orders as o')
         ->rightJoin('order_items as oi', 'o.id', '=', 'oi.order_id')
         ->join('books as b', 'oi.item_id', '=', 'b.id')
-        ->select('o.user_id', 'o.status', 'o.total_price', 'o.order_date', 'o.destination_name', 'o.destination_email'
+        ->select('o.id', 'o.user_id', 'o.status', 'o.total_price', 'o.order_date', 'o.destination_name', 'o.destination_email'
             , 'o.destination_zipcode', 'o.destination_address', 'o.destination_tel', 'o.delivery_time', 'o.payment_method'
             , 'oi.id', 'oi.quantity', 'oi.type', 'b.name', 'b.price_data', 'b.price_paperbook', 'b.image_path')
         ->get();
@@ -101,8 +102,22 @@ class AddItemController extends Controller
     }
 
     /**
-     * Ordersテーブルのtotal_priceに値をセットする.
+     * OrdersテーブルとUsersテーブルを結合する.
      */
+    public function getUserAndOrder($userId) {
+        $getUserAndOrder = DB::table('users as u')
+        ->join('orders as o', 'u.id', '=', 'o.user_id')
+        ->select('u.name', 'u.email', 'u.password', 'u.zipcode', 'u.address', 'u.telephone', 'o.id', 'o.status', 'o.total_price'
+            , 'o.order_date', 'o.destination_name', 'o.destination_email', 'o.destination_zipcode', 'o.destination_address'
+            , 'o.destination_tel', 'o.delivery_time', 'o.payment_method')
+        ->get();
+
+        return $getUserAndOrder;
+    }
+
+    // /**
+    //  * Ordersテーブルのtotal_priceに値をセットする.
+    //  */
     public function setTotalPrice($userId) {
         //total_priceの更新
         $orderInfo = $this->getOrderAndOrderItemAndBook($userId);

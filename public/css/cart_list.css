@@ -27,3 +27,18 @@
 .order-confirm-btn {
   text-align: center;
 }
+
+
+.no-cart-message {
+  font-size: 20px;
+}
+
+.no-cart-img {
+  text-align: center;
+}
+
+.no-cart-img img {
+  width: 500px;
+  height: auto;
+  opacity: 0.5;
+}

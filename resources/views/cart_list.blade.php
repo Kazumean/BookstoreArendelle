@@ -77,6 +77,11 @@
     <div class="top-wrapper">
       <div class="container">
         <h1 class="page-title">ショッピングカート</h1>
+        @if ($orders->isEmpty())
+        <p class="no-cart-message" style="text-align: center">カートに商品がありません</p>
+        <p class="no-cart-img"><img src="{{ asset('img/books2.jpg') }}"></p>
+      <div style="text-align: center"><a href="{{ route('books.index') }}">商品一覧へ</a></div>
+        @else
         <!-- table -->
         <div class="row">
           <table class="striped">
@@ -159,6 +164,7 @@
             <span>注文に進む</span>
           </button>
         </div>
+        @endif
       </div>
       <!-- end container -->
     </div>
