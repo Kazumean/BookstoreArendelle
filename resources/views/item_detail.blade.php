@@ -45,22 +45,44 @@
           <div class="header-right">
             <a href="{{ route('books.index') }}">商品一覧</a>
             <a href="{{ route('register_user') }}">会員登録</a>
-            <a href="cart_list.html">
+            <a href="{{ route('book.showCart') }}">
               <i class="fas fa-shopping-cart"> </i>カート
             </a>
-            <a href="login.html" class="login">
+
+            @if(Auth::check())
+            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <i class="fas fa-sign-out-alt"></i>ログアウト
+            </a>
+            <form id="logout-form" action="{{ route('logout_user') }}" method="POST">
+              @csrf
+            </form>
+            <a href="order_history.html">注文履歴</a>
+            @else
+            <a href="{{ route('login_user') }}" class="login">
               <i class="fas fa-sign-in-alt"></i>ログイン
             </a>
+            @endif
 
-            <a href="order_history.html">注文履歴</a>
+            @if (Auth::check())
+            <a>
+              <i class="fas fa-solid fa-user"></i>{{ Auth::user()->name }}さん
+            </a>
+            @else
+            <a>
+              <i class="fas fa-solid fa-user"></i>ゲストユーザーさん
+            </a>
+            @endif
           </div>
         </div>
       </div>
     </header>
     <div class="top-wrapper">
-      @foreach($books as $book)
       <div class="container">
+        <form action="{{ route('book.addItem') }}" method="POST">
+          @csrf
+        @foreach($books as $book)
         <h1 class="page-title">{{ $book->book_name }}</h1>
+        <input type="hidden" name="item_id" value="{{ $book->book_id }}">
         <div class="row">
           <div class="row item-detail">
             <div class="item-icon">
@@ -92,14 +114,14 @@
             <div class="item-hedding">タイプ</div>
             <div>
               <label>
-                <input id="size-m" name="size" type="radio" checked="checked" />
+                <input id="type-e" name="type" type="radio" value="e-book" checked="checked" />
                 <span>
                   &nbsp;<span class="price">e-book</span
                     >&nbsp;&nbsp;{{ number_format($book->price_data) }}円(税抜)</span
                     >
                   </label>
                   <label>
-                    <input id="size-l" name="size" type="radio" />
+                    <input id="type-p" name="type" type="radio" value="paperBook"/>
                     <span>
                       &nbsp;<span class="price">ペーパーブック</span
                         >&nbsp;&nbsp;{{ number_format($book->price_paperbook) }}円(税抜)</span
@@ -161,7 +183,7 @@
                     <div class="item-hedding item-hedding-quantity">数量</div>
                     <div class="item-quantity-selectbox">
                       <div class="input-field col s12">
-                        <select class="browser-default">
+                        <select name="quantity" class="browser-default">
                           <option value="" disabled selected>選択して下さい</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
@@ -185,8 +207,7 @@
                   <div class="row item-cart-btn">
                     <button
                     class="btn"
-                    type="button"
-                    onclick="location.href='cart_list.html'"
+                    type="submit"
                     >
                     <i class="material-icons left">add_shopping_cart</i>
                     <span>カートに入れる</span>
@@ -194,16 +215,17 @@
                 </div>
               </div>
             </div>
+            @endforeach
+          </form>
             <!-- end container -->
           </div>
-          @endforeach
           <!-- end top-wrapper -->
           <footer>
             <div class="container">
               <img src="{{ asset('img/header_logo2.jpg') }}" />
         <p>Let's read books around the world!!</p>
-      </div>
-    </footer>
+            </div>
+          </footer>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>

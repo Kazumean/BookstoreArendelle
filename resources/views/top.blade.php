@@ -27,12 +27,31 @@
           <div class="header-right">
             <a href="{{ route('books.index') }}">商品一覧</a>
             <a href="{{ route('register_user') }}">会員登録</a>
-            <a href="cart_list.html"
+            <a href="{{ route('book.showCart') }}"
               ><i class="fas fa-shopping-cart"></i>カート</a
             >
+            @if (Auth::check())
+            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <i class="fas fa-sign-out-alt"></i>ログアウト
+            </a>
+            <form id="logout-form" action="{{ route('logout_user') }}" method="POST">
+              @csrf
+            </form>
+            @else
             <a href="{{ route('login_user') }}" class="login">
               <i class="fas fa-sign-in-alt"></i>ログイン
             </a>
+            @endif
+
+            @if (Auth::check())
+            <a>
+              <i class="fas fa-solid fa-user"></i>{{ Auth::user()->name }}さん
+            </a>
+            @else
+            <a>
+              <i class="fas fa-solid fa-user"></i>ゲストユーザーさん
+            </a>
+            @endif
           </div>
         </div>
 

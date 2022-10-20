@@ -16,17 +16,17 @@
       href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/common.css" />
-    <link rel="stylesheet" href="css/header.css" />
-    <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/register_admin.css" />
-    <link rel="stylesheet" href="css/login.css" />
-    <link rel="stylesheet" href="css/item_list.css" />
-    <link rel="stylesheet" href="css/item_detail.css" />
-    <link rel="stylesheet" href="css/cart_list.css" />
-    <link rel="stylesheet" href="css/order_confirm.css" />
-    <link rel="stylesheet" href="css/order_finished.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/register_admin.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/item_list.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/item_detail.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/cart_list.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/order_confirm.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/order_finished.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
     <script type="text/javascript" src="https://ajaxzip3.github.io/ajaxzip3.js" charset="utf-8"></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -44,11 +44,31 @@
           </div>
 
           <div class="header-right">
-            <a href="item_list.html">商品一覧</a>
-            <a th:href="@{/toInsert}">会員登録</a>
-            <a th:href="@{/toLogin}" class="login">
+            <a href="{{ route('books.index') }}">商品一覧</a>
+            {{-- <a href="{{ route('register_user') }}">会員登録</a> --}}
+
+            @if(Auth::check())
+            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <i class="fas fa-sign-out-alt"></i>ログアウト
+            </a>
+            <form id="logout-form" action="{{ route('logout_user') }}" method="POST">
+              @csrf
+            </form>
+            @else
+            <a href="{{ route('login_user')}}" class="login">
               <i class="fas fa-sign-in-alt"></i>ログイン
             </a>
+            @endif
+
+            @if (Auth::check())
+            <a>
+              <i class="fas fa-solid fa-user"></i>{{ Auth::user()->name }}さん
+            </a>
+            @else
+            <a>
+              <i class="fas fa-solid fa-user"></i>ゲストユーザーさん
+            </a>
+            @endif
           </div>
         </div>
       </div>

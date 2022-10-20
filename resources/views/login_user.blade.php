@@ -16,17 +16,17 @@
       href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/common.css" />
-    <link rel="stylesheet" href="css/header.css" />
-    <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/register_admin.css" />
-    <link rel="stylesheet" href="css/login.css" />
-    <link rel="stylesheet" href="css/item_list.css" />
-    <link rel="stylesheet" href="css/item_detail.css" />
-    <link rel="stylesheet" href="css/cart_list.css" />
-    <link rel="stylesheet" href="css/order_confirm.css" />
-    <link rel="stylesheet" href="css/order_finished.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/register_admin.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/item_list.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/item_detail.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/cart_list.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/order_confirm.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/order_finished.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -44,11 +44,8 @@
           </div>
 
           <div class="header-right">
-            <a href="item_list.html">商品一覧</a>
+            <a href="{{ route('books.index') }}">商品一覧</a>
             <a href="{{ route('register_user') }}">会員登録</a>
-            {{-- <a href="login.html" class="login">
-              <i class="fas fa-sign-in-alt"></i>ログイン
-            </a> --}}
           </div>
         </div>
       </div>
