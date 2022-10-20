@@ -6,6 +6,7 @@ use App\Http\Controllers\ShowTopPageController;
 use App\Http\Controllers\ShowBooksController;
 use App\Http\Controllers\ShowBookDetailController;
 use App\Http\Controllers\ShowCartController;
+use App\Http\Controllers\OrderConfirmController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -47,3 +48,6 @@ Route::post('/addItem', [AddItemController::class, 'addItem'])->name('book.addIt
 
 //カートから商品を削除する
 Route::delete('/deleteItem/{book}', [DeleteItemController::class, 'deleteItem'])->name('book.deleteItem');
+
+//注文確認画面に遷移する
+Route::get('/showOrderConfirm', [OrderConfirmController::class, 'orderConfirm'])->name('book.orderConfirm');

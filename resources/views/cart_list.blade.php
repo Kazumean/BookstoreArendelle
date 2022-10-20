@@ -155,15 +155,17 @@
         echo '</div>';
         ?>
 
+      <form action="{{ route('book.orderConfirm') }}" method="GET">
         <div class="row order-confirm-btn">
           <button
             class="btn"
-            type="button"
-            onclick="location.href='order_confirm.html'"
+            type="submit"
           >
             <span>注文に進む</span>
           </button>
         </div>
+      </form>
+        <div style="text-align: center"><a href="{{ route('books.index') }}">お買い物を続ける</a></div>
         @endif
       </div>
       <!-- end container -->
