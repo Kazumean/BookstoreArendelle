@@ -144,34 +144,34 @@
         <div class="order-confirm-delivery-info">
           <div class="row">
             <div class="input-field">
-              <input id="name" type="text" />
+              <input id="name" type="text" value="{{ $user->name }}" />
               <label for="name">お名前</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field">
-              <input id="email" type="email" />
+              <input id="email" type="email" value="{{ $user->email }}" />
               <label for="email">メールアドレス</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field">
-              <input id="zipcode" type="text" maxlength="7" />
+              <input id="zipcode" type="text" value="{{ $user->zipcode }}" />
               <label for="zipcode">郵便番号</label>
-              <button class="btn" type="button">
+              {{-- <button class="btn" type="button">
                 <span>住所検索</span>
-              </button>
+              </button> --}}
             </div>
           </div>
           <div class="row">
             <div class="input-field">
-              <input id="address" type="text" />
+              <input id="address" type="text" value="{{ $user->address }}"/>
               <label for="address">住所</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field">
-              <input id="tel" type="tel" />
+              <input id="tel" type="tel" value="{{ $user->telephone }}"/>
               <label for="tel">電話番号</label>
             </div>
           </div>

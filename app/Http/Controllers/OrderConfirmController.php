@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class OrderConfirmController extends Controller
 {
@@ -16,7 +17,7 @@ class OrderConfirmController extends Controller
         if ($user) {
             $userId = $user->id;
         } else {
-            return redirect()->route('login_user');
+            return redirect('/login');
         }
         $orderAndOrderItemAndBook = $this->getOrderAndOrderItemAndBook($userId);
 
