@@ -76,6 +76,7 @@
         </div>
       </div>
     </header>
+
     <div class="top-wrapper">
       <div class="container">
         <h1 class="page-title">注文内容確認</h1>
@@ -141,6 +142,8 @@
         echo '</div>';
         ?>
 
+      <form action="{{ route('create_order') }}" method="POST">
+        @csrf
         <h2 class="page-title">お届け先情報</h2>
         <div class="order-confirm-delivery-info">
           <div class="row">
@@ -241,12 +244,12 @@
         <div class="row order-confirm-btn">
           <button
             class="btn"
-            type="button"
-            onclick="location.href='order_finished.html'"
+            type="submit"
           >
             <span>この内容で注文する</span>
           </button>
         </div>
+      </form>
       </div>
       <!-- end container -->
     </div>
