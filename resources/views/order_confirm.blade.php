@@ -30,6 +30,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="text/javascript" src="https://ajaxzip3.github.io/ajaxzip3.js" charset="utf-8"></script>
     <title>{{ config('app.name', 'Laravel') }}</title>
   </head>
   <body>
@@ -156,7 +157,7 @@
           </div>
           <div class="row">
             <div class="input-field">
-              <input id="zipcode" type="text" value="{{ $user->zipcode }}" />
+              <input id="zipcode" type="text" value="{{ $user->zipcode }}" onKeyUp="AjaxZip3.zip2addr(this,'','address','address');" />
               <label for="zipcode">郵便番号</label>
               {{-- <button class="btn" type="button">
                 <span>住所検索</span>
@@ -165,7 +166,7 @@
           </div>
           <div class="row">
             <div class="input-field">
-              <input id="address" type="text" value="{{ $user->address }}"/>
+              <input id="address" name="address" type="text" value="{{ $user->address }}"/>
               <label for="address">住所</label>
             </div>
           </div>
