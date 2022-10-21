@@ -47,7 +47,7 @@ Route::get('/showCart', [ShowCartController::class, 'showCart'])->name('book.sho
 Route::post('/addItem', [AddItemController::class, 'addItem'])->name('book.addItem');
 
 //カートから商品を削除する
-Route::delete('/deleteItem/{book}', [DeleteItemController::class, 'deleteItem'])->name('book.deleteItem');
+Route::delete('/deleteItem/{orderItem_id}', [DeleteItemController::class, 'deleteItem'])->name('book.deleteItem');
 
 //注文確認画面に遷移する
 Route::get('/showOrderConfirm', [OrderConfirmController::class, 'orderConfirm'])->name('book.orderConfirm');

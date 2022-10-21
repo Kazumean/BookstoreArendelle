@@ -15,6 +15,8 @@ class OrderConfirmController extends Controller
 
         if ($user) {
             $userId = $user->id;
+        } else {
+            return redirect()->route('login_user');
         }
         $orderAndOrderItemAndBook = $this->getOrderAndOrderItemAndBook($userId);
 

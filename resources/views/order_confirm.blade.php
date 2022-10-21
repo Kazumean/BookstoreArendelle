@@ -115,9 +115,9 @@
                   </ul>
                 </td> --}}
                 @if ($orderConfirm->type == 'e-book')
-                <td><div class="text-center">{{ number_format($order->price_data) }}円</div></td>
+                <td><div class="text-center">{{ number_format($orderConfirm->price_data) }}円</div></td>
                 @else
-                <td><div class="text-center">{{ number_format($order->price_paperbook) }}円</div></td>
+                <td><div class="text-center">{{ number_format($orderConfirm->price_paperbook) }}円</div></td>
                 @endif
               </tr>
             </tbody>
@@ -125,10 +125,20 @@
           </table>
         </div>
 
-        <div class="row cart-total-price">
-          <div>消費税：8,000円</div>
-          <div>ご注文金額合計：38,000円 (税込)</div>
-        </div>
+        <?php
+        $totalPrice = 0;
+        foreach($orderConfirms as $orderConfirm) {
+          $totalPrice += $orderConfirm->total_price;
+        }
+        $tax = $totalPrice * 0.1;
+        $taxIncludedPrice = $totalPrice + $tax;
+        $commaTax = number_format($tax);
+        $commaTaxIncludedPrice = number_format($taxIncludedPrice);
+        echo '<div class="row cart-total-price">';
+        echo  "<div>消費税：{$commaTax}円</div>";
+        echo  "<div>ご注文金額合計：{$commaTaxIncludedPrice}円 (税込)</div>";
+        echo '</div>';
+        ?>
 
         <h2 class="page-title">お届け先情報</h2>
         <div class="order-confirm-delivery-info">

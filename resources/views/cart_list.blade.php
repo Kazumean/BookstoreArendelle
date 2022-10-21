@@ -126,7 +126,7 @@
                 @endif
 
                 <td>
-                  <form action="{{ route('book.deleteItem', $order->order_item_id) }}" method="POST">
+                  <form action="{{ route('book.deleteItem', $order->orderItem_id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                       <button class="btn" type="submit" onclick='return confirm("削除しますか？");'>

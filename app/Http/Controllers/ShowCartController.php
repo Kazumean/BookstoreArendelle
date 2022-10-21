@@ -33,7 +33,7 @@ class ShowCartController extends Controller
         ->join('books as b', 'oi.item_id', '=', 'b.id')
         ->select('o.id', 'o.user_id', 'o.status', 'o.total_price', 'o.order_date', 'o.destination_name', 'o.destination_email'
             , 'o.destination_zipcode', 'o.destination_address', 'o.destination_tel', 'o.delivery_time', 'o.payment_method'
-            , 'oi.id', 'oi.item_id as order_item_id', 'oi.quantity', 'oi.type', 'b.name', 'b.price_data', 'b.price_paperbook', 'b.description', 'b.image_path')
+            , 'oi.id as orderItem_id', 'oi.item_id as order_item_id', 'oi.quantity', 'oi.type', 'b.name', 'b.price_data', 'b.price_paperbook', 'b.description', 'b.image_path')
         ->where(['o.user_id' => $userId
             , 'o.status' => $status])
         ->get();
