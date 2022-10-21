@@ -22,14 +22,15 @@ class AddItemController extends Controller
             $order = Order::where([
                 'user_id' => $userId
                 , 'status' => 0])->first();
+            // dd($order);
 
-            if ($order = null) {
+            if ($order == null) {
                 $this->saveOrder($request, $userId);
                 $order = Order::where([
                     'user_id' => $userId
                     , 'status' => 0])->first();
             }
-            dd($order);
+            // dd($order);
             $this->saveOrderItem($request, $order);
             $this->setTotalPrice($userId);
         } else {
@@ -124,16 +125,16 @@ class AddItemController extends Controller
     //  */
     public function setTotalPrice($userId) {
         //total_priceの更新
-        $orderInfo = $this->getOrderAndOrderItemAndBook($userId);
+        $orderInfos = $this->getOrderAndOrderItemAndBook($userId);
         $totalPrice = 0;
 
-        foreach($orderInfo as $order) {
-            if ($order->type == 'e-book') {
-                $price = $order->price_data;
+        foreach($orderInfos as $orderInfo) {
+            if ($orderInfo->type == 'e-book') {
+                $price = $orderInfo->price_data;
             } else {
-                $price = $order->price_paperbook;
+                $price = $orderInfo->price_paperbook;
             }
-            $totalPrice += $price * $order->quantity;
+            $totalPrice += $orderInfo->quantity * $price;
         }
         $order = Order::where(['user_id' => $userId, 'status' => 0])->first();
         $order->total_price = $totalPrice;

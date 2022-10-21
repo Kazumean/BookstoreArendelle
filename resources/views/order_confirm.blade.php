@@ -1,370 +1,263 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta charset="utf-8" />
+    <!--Import Google Icon Font-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- Import Materialize CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <!-- Import Font Wesome -->
+    <link
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/register_admin.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/item_list.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/item_detail.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/cart_list.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/order_confirm.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/order_finished.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ピザ屋のネット注文</title>
-    <link href="../static/css/bootstrap.css" rel="stylesheet" />
-    <link href="../static/css/piza.css" rel="stylesheet" />
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="text/javascript" src="https://ajaxzip3.github.io/ajaxzip3.js" charset="utf-8"></script>
+    <title>{{ config('app.name', 'Laravel') }}</title>
   </head>
   <body>
-    <div class="container">
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button
-              type="button"
-              class="navbar-toggle collapsed"
-              data-toggle="collapse"
-              data-target="#bs-example-navbar-collapse-1"
-              aria-expanded="false"
-            >
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span> <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="item_list_pizza.html">
-              <!-- 企業ロゴ -->
-              <img
-                alt="main log"
-                src="../static/img_pizza/header_logo.png"
-                height="35"
-              />
+    <header>
+      <div class="container">
+        <div class="header">
+          <div class="header-left">
+            <a href="{{ route('show.top') }}">
+              <img class="logo" src="{{ asset('img/header_logo2.jpg') }}" />
             </a>
           </div>
 
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div
-            class="collapse navbar-collapse"
-            id="bs-example-navbar-collapse-1"
-          >
-            <p class="navbar-text navbar-right">
-              <a href="cart_list.html" class="navbar-link">ショッピングカート</a
-              >&nbsp;&nbsp;
-              <a href="order_history.html" class="navbar-link">注文履歴</a
-              >&nbsp;&nbsp;
-              <a href="login.html" class="navbar-link">ログイン</a>&nbsp;&nbsp;
-              <a href="item_list_pizza.html" class="navbar-link">ログアウト</a>
-            </p>
-          </div>
-          <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-      </nav>
+          <div class="header-right">
+            <a href="{{ route('books.index') }}">商品一覧</a>
+            <a href="{{ route('register_user') }}">会員登録</a>
+            <a href="{{ route('book.showCart') }}"><i class="fas fa-shopping-cart"></i>カート</a>
+            
+            @if(Auth::check())
+            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <i class="fas fa-sign-out-alt"></i>ログアウト
+            </a>
+            <form id="logout-form" action="{{ route('logout_user') }}" method="POST">
+              @csrf
+            </form>
+            <a href="order_history.html">注文履歴</a>
+            @else
+            <a href="{{ route('login_user') }}" class="login">
+              <i class="fas fa-sign-in-alt"></i>ログイン
+            </a>
+            @endif
 
-      <!-- table -->
-      <div class="row">
-        <div
-          class="table-responsive col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-10 col-xs-12"
-        >
-          <h3 class="text-center">注文内容確認</h3>
-          <table class="table table-striped item-list-table">
-            <tbody>
-              <tr>
-                <th>
-                  <div class="text-center">商品名</div>
-                </th>
-                <th>
-                  <div class="text-center">サイズ、価格(税抜)、数量</div>
-                </th>
-                <th>
-                  <div class="text-center">トッピング、価格(税抜)</div>
-                </th>
-                <th>
-                  <div class="text-center">小計</div>
-                </th>
-              </tr>
-              <tr>
-                <td>
-                  <div class="center">
-                    <img
-                      src="../static/img_pizza/1.jpg"
-                      class="img-responsive img-rounded item-img-center"
-                      width="100"
-                      height="300"
-                    /><br />
-                    じゃがバターベーコン
-                  </div>
-                </td>
-                <td>
-                  <span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;2,380円
-                  &nbsp;&nbsp;1個
-                </td>
-                <td>
-                  <ul>
-                    <li>ピーマン300円</li>
-                    <li>オニオン300円</li>
-                    <li>あらびきソーセージ300円</li>
-                  </ul>
-                </td>
-                <td>
-                  <div class="text-center">3,280円</div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="center">
-                    <img
-                      src="../static/img_pizza/1.jpg"
-                      class="img-responsive img-rounded item-img-center"
-                      width="100"
-                      height="300"
-                    /><br />
-                    じゃがバターベーコン
-                  </div>
-                </td>
-                <td>
-                  <span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;2,380円
-                  &nbsp;&nbsp;1個
-                </td>
-                <td>
-                  <ul>
-                    <li>ピーマン300円</li>
-                    <li>オニオン300円</li>
-                    <li>あらびきソーセージ300円</li>
-                  </ul>
-                </td>
-                <td>
-                  <div class="text-center">3,280円</div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="center">
-                    <img
-                      src="../static/img_pizza/1.jpg"
-                      class="img-responsive img-rounded item-img-center"
-                      width="100"
-                      height="300"
-                    /><br />
-                    じゃがバターベーコン
-                  </div>
-                </td>
-                <td>
-                  <span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;2,380円
-                  &nbsp;&nbsp;1個
-                </td>
-                <td>
-                  <ul>
-                    <li>ピーマン300円</li>
-                    <li>オニオン300円</li>
-                    <li>あらびきソーセージ300円</li>
-                  </ul>
-                </td>
-                <td>
-                  <div class="text-center">3,280円</div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+            @if (Auth::check())
+            <a>
+              <i class="fas fa-solid fa-user"></i>{{ Auth::user()->name }}さん
+            </a>
+            @else
+            <a>
+              <i class="fas fa-solid fa-user"></i>ゲストユーザーさん
+            </a>
+            @endif
 
-      <div class="row">
-        <div class="col-xs-offset-2 col-xs-8">
-          <div class="form-group text-center">
-            <span id="total-price">消費税：8,000円</span><br />
-            <span id="total-price">ご注文金額合計：38,000円 (税込)</span>
           </div>
         </div>
       </div>
-
-      <!-- table -->
-      <form action="order_finished.html">
-        <div class="row">
-          <div
-            class="table-responsive col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10 col-sm-10 col-xs-12"
-          >
-            <h3 class="text-center">お届け先情報</h3>
-            <table class="table table-striped item-list-table">
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="text-center">お名前</div>
-                  </td>
-                  <td>
-                    <input type="text" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="text-center">メールアドレス</div>
-                  </td>
-                  <td>
-                    <input type="text" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="text-center">郵便番号</div>
-                  </td>
-                  <td>
-                    <input type="text" />&nbsp;&nbsp;<button>住所検索</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="text-center">住所</div>
-                  </td>
-                  <td>
-                    <input type="text" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="text-center">電話番号</div>
-                  </td>
-                  <td>
-                    <input type="text" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="text-center">配達日時</div>
-                  </td>
-                  <td>
-                    <div class="form-group">
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <label
-                            class="control-label"
-                            style="color: red"
-                            for="inputPeriod"
-                            >配達日時を入力してください</label
-                          >
-                        </div>
-                        <div class="col-sm-5">
-                          <input
-                            type="date"
-                            name="name"
-                            id="name"
-                            class="form-control input-sm"
-                          />
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <label class="radio-inline">
-                            <input
-                              type="radio"
-                              name="responsibleCompany"
-                              checked="checked"
-                            />
-                            10時
-                          </label>
-                          <label class="radio-inline">
-                            <input type="radio" name="responsibleCompany" />
-                            11時
-                          </label>
-                          <label class="radio-inline">
-                            <input type="radio" name="responsibleCompany" />
-                            12時 </label
-                          ><br />
-                          <label class="radio-inline">
-                            <input type="radio" name="responsibleCompany" />
-                            13時
-                          </label>
-                          <label class="radio-inline">
-                            <input type="radio" name="responsibleCompany" />
-                            14時
-                          </label>
-                          <label class="radio-inline">
-                            <input type="radio" name="responsibleCompany" />
-                            15時 </label
-                          ><br />
-                          <label class="radio-inline">
-                            <input type="radio" name="responsibleCompany" />
-                            16時
-                          </label>
-                          <label class="radio-inline">
-                            <input type="radio" name="responsibleCompany" />
-                            17時
-                          </label>
-                          <label class="radio-inline">
-                            <input type="radio" name="responsibleCompany" />
-                            18時 </label
-                          ><br />
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
+    </header>
+    <div class="top-wrapper">
+      <div class="container">
+        <h1 class="page-title">注文内容確認</h1>
         <!-- table -->
         <div class="row">
-          <div
-            class="table-responsive col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10 col-sm-10 col-xs-12"
-          >
-            <h3 class="text-center">お支払い方法</h3>
-            <table class="table table-striped item-list-table">
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="text-center">代金引換</div>
-                  </td>
-                  <td>
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <label class="radio-inline">
-                          <input
-                            type="radio"
-                            name="responsibleCompany"
-                            checked="checked"
-                          />
-                          代金引換
-                        </label>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="text-center">クレジットカード決済</div>
-                  </td>
-                  <td align="center">
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <label class="radio-inline">
-                          <input
-                            type="radio"
-                            name="responsibleCompany"
-                            checked="checked"
-                          />
-                          クレジットカード </label
-                        ><br /><br />
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <table class="striped">
+            <thead>
+              <tr>
+                <th class="cart-table-th">商品名</th>
+                <th>タイプ、価格(税抜)、数量</th>
+                {{-- <th>トッピング、価格(税抜)</th> --}}
+                <th>小計</th>
+              </tr>
+            </thead>
+            @foreach($orderConfirms as $orderConfirm)
+            <tbody>
+              <tr>
+                <td class="cart-item-name">
+                  <div class="cart-item-icon">
+                    <img src="{{ $orderConfirm->image_path }}" />
+                  </div>
+                  <span>{{ $orderConfirm->name }}</span>
+                </td>
+                <td>
+                  <span class="price">&nbsp;{{ $orderConfirm->type }}</span>
+                  @if ($orderConfirm->type == 'e-book')
+                  &nbsp;&nbsp;{{ number_format($orderConfirm->price_data) }}円
+                  @else
+                  &nbsp;&nbsp;{{ number_format($orderConfirm->price_paperbook) }}円
+                  @endif
+                  &nbsp;&nbsp;{{ $orderConfirm->quantity }}個
+                </td>
+                {{-- <td>
+                  <ul>
+                    <li>ピーマン300円</li>
+                    <li>オニオン300円</li>
+                    <li>あらびきソーセージ300円</li>
+                  </ul>
+                </td> --}}
+                @if ($orderConfirm->type == 'e-book')
+                <td><div class="text-center">{{ number_format($orderConfirm->price_data) }}円</div></td>
+                @else
+                <td><div class="text-center">{{ number_format($orderConfirm->price_paperbook) }}円</div></td>
+                @endif
+              </tr>
+            </tbody>
+            @endforeach
+          </table>
         </div>
-        <div class="row">
-          <div class="col-xs-offset-4 col-xs-4">
-            <div class="form-group">
-              <input
-                class="form-control btn btn-warning btn-block"
-                type="submit"
-                value="この内容で注文する"
-              />
+
+        <?php
+        $totalPrice = 0;
+        foreach($orderConfirms as $orderConfirm) {
+          $totalPrice += $orderConfirm->total_price;
+        }
+        $tax = $totalPrice * 0.1;
+        $taxIncludedPrice = $totalPrice + $tax;
+        $commaTax = number_format($tax);
+        $commaTaxIncludedPrice = number_format($taxIncludedPrice);
+        echo '<div class="row cart-total-price">';
+        echo  "<div>消費税：{$commaTax}円</div>";
+        echo  "<div>ご注文金額合計：{$commaTaxIncludedPrice}円 (税込)</div>";
+        echo '</div>';
+        ?>
+
+        <h2 class="page-title">お届け先情報</h2>
+        <div class="order-confirm-delivery-info">
+          <div class="row">
+            <div class="input-field">
+              <input id="name" type="text" value="{{ $user->name }}" />
+              <label for="name">お名前</label>
             </div>
           </div>
+          <div class="row">
+            <div class="input-field">
+              <input id="email" type="email" value="{{ $user->email }}" />
+              <label for="email">メールアドレス</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field">
+              <input id="zipcode" type="text" value="{{ $user->zipcode }}" onKeyUp="AjaxZip3.zip2addr(this,'','address','address');" />
+              <label for="zipcode">郵便番号</label>
+              {{-- <button class="btn" type="button">
+                <span>住所検索</span>
+              </button> --}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field">
+              <input id="address" name="address" type="text" value="{{ $user->address }}"/>
+              <label for="address">住所</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field">
+              <input id="tel" type="tel" value="{{ $user->telephone }}"/>
+              <label for="tel">電話番号</label>
+            </div>
+          </div>
+          <div class="row order-confirm-delivery-datetime">
+            <div class="input-field">
+              <input id="deliveryDate" type="date" />
+              <label for="address">配達日時</label>
+            </div>
+            <label class="order-confirm-delivery-time">
+              <input name="deliveryTime" type="radio" value="10" checked="checked" />
+              <span>10時</span>
+            </label>
+            <label class="order-confirm-delivery-time">
+              <input name="deliveryTime" type="radio" value="11" />
+              <span>11時</span>
+            </label>
+            <label class="order-confirm-delivery-time">
+              <input name="deliveryTime" type="radio" value="12" />
+              <span>12時</span>
+            </label>
+            <label class="order-confirm-delivery-time">
+              <input name="deliveryTime" type="radio" value="13" />
+              <span>13時</span>
+            </label>
+            <label class="order-confirm-delivery-time">
+              <input name="deliveryTime" type="radio" value="14" />
+              <span>14時</span>
+            </label>
+            <label class="order-confirm-delivery-time">
+              <input name="deliveryTime" type="radio" value="15" />
+              <span>15時</span>
+            </label>
+            <label class="order-confirm-delivery-time">
+              <input name="deliveryTime" type="radio" value="16" />
+              <span>16時</span>
+            </label>
+            <label class="order-confirm-delivery-time">
+              <input name="deliveryTime" type="radio" value="17" />
+              <span>17時</span>
+            </label>
+            <label class="order-confirm-delivery-time">
+              <input name="deliveryTime" type="radio" value="18" />
+              <span>18時</span>
+            </label>
+          </div>
         </div>
-      </form>
+
+        <h2 class="page-title">お支払い方法</h2>
+        <div class="row order-confirm-payment-method">
+          <span>
+            <label class="order-confirm-payment-method-radio">
+              <input
+                name="paymentMethod"
+                type="radio"
+                value="1"
+                checked="checked"
+              />
+              <span>代金引換</span>
+            </label>
+            <label class="order-confirm-payment-method-radio">
+              <input name="paymentMethod" type="radio" value="2" />
+              <span>クレジットカード</span>
+            </label>
+          </span>
+        </div>
+        <div class="row order-confirm-btn">
+          <button
+            class="btn"
+            type="button"
+            onclick="location.href='order_finished.html'"
+          >
+            <span>この内容で注文する</span>
+          </button>
+        </div>
+      </div>
+      <!-- end container -->
     </div>
-    <!-- end container -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
+    <!-- end top-wrapper -->
+    <footer>
+      <div class="container">
+        <img src="{{ asset('img/header_logo2.jpg') }}" />
+        <p>Let's read books around the world!!</p>
+      </div>
+    </footer>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
 </html>
