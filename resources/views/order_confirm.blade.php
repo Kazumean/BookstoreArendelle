@@ -84,73 +84,44 @@
             <thead>
               <tr>
                 <th class="cart-table-th">商品名</th>
-                <th>サイズ、価格(税抜)、数量</th>
-                <th>トッピング、価格(税抜)</th>
+                <th>タイプ、価格(税抜)、数量</th>
+                {{-- <th>トッピング、価格(税抜)</th> --}}
                 <th>小計</th>
               </tr>
             </thead>
+            @foreach($orderConfirms as $orderConfirm)
             <tbody>
               <tr>
                 <td class="cart-item-name">
                   <div class="cart-item-icon">
-                    <img src="img/1.jpg" />
+                    <img src="{{ $orderConfirm->image_path }}" />
                   </div>
-                  <span>ハワイアンパラダイス</span>
+                  <span>{{ $orderConfirm->name }}</span>
                 </td>
                 <td>
-                  <span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;2,380円
-                  &nbsp;&nbsp;1個
+                  <span class="price">&nbsp;{{ $orderConfirm->type }}</span>
+                  @if ($orderConfirm->type == 'e-book')
+                  &nbsp;&nbsp;{{ number_format($orderConfirm->price_data) }}円
+                  @else
+                  &nbsp;&nbsp;{{ number_format($orderConfirm->price_paperbook) }}円
+                  @endif
+                  &nbsp;&nbsp;{{ $orderConfirm->quantity }}個
                 </td>
-                <td>
+                {{-- <td>
                   <ul>
                     <li>ピーマン300円</li>
                     <li>オニオン300円</li>
                     <li>あらびきソーセージ300円</li>
                   </ul>
-                </td>
-                <td><div class="text-center">3,280円</div></td>
-              </tr>
-              <tr>
-                <td class="cart-item-name">
-                  <div class="cart-item-icon">
-                    <img src="img/1.jpg" />
-                  </div>
-                  <span>ハワイアンパラダイス</span>
-                </td>
-                <td>
-                  <span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;2,380円
-                  &nbsp;&nbsp;1個
-                </td>
-                <td>
-                  <ul>
-                    <li>ピーマン300円</li>
-                    <li>オニオン300円</li>
-                    <li>あらびきソーセージ300円</li>
-                  </ul>
-                </td>
-                <td><div class="text-center">3,280円</div></td>
-              </tr>
-              <tr>
-                <td class="cart-item-name">
-                  <div class="cart-item-icon">
-                    <img src="img/1.jpg" />
-                  </div>
-                  <span>ハワイアンパラダイス</span>
-                </td>
-                <td>
-                  <span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;2,380円
-                  &nbsp;&nbsp;1個
-                </td>
-                <td>
-                  <ul>
-                    <li>ピーマン300円</li>
-                    <li>オニオン300円</li>
-                    <li>あらびきソーセージ300円</li>
-                  </ul>
-                </td>
-                <td><div class="text-center">3,280円</div></td>
+                </td> --}}
+                @if ($orderConfirm->type == 'e-book')
+                <td><div class="text-center">{{ number_format($order->price_data) }}円</div></td>
+                @else
+                <td><div class="text-center">{{ number_format($order->price_paperbook) }}円</div></td>
+                @endif
               </tr>
             </tbody>
+            @endforeach
           </table>
         </div>
 
@@ -200,44 +171,39 @@
               <label for="address">配達日時</label>
             </div>
             <label class="order-confirm-delivery-time">
-              <input
-                name="deliveryTime"
-                type="radio"
-                value="10時"
-                checked="checked"
-              />
+              <input name="deliveryTime" type="radio" value="10" checked="checked" />
               <span>10時</span>
             </label>
             <label class="order-confirm-delivery-time">
-              <input name="deliveryTime" type="radio" value="11時" />
+              <input name="deliveryTime" type="radio" value="11" />
               <span>11時</span>
             </label>
             <label class="order-confirm-delivery-time">
-              <input name="deliveryTime" type="radio" value="12時" />
+              <input name="deliveryTime" type="radio" value="12" />
               <span>12時</span>
             </label>
             <label class="order-confirm-delivery-time">
-              <input name="deliveryTime" type="radio" value="13時" />
+              <input name="deliveryTime" type="radio" value="13" />
               <span>13時</span>
             </label>
             <label class="order-confirm-delivery-time">
-              <input name="deliveryTime" type="radio" value="14時" />
+              <input name="deliveryTime" type="radio" value="14" />
               <span>14時</span>
             </label>
             <label class="order-confirm-delivery-time">
-              <input name="deliveryTime" type="radio" value="15時" />
+              <input name="deliveryTime" type="radio" value="15" />
               <span>15時</span>
             </label>
             <label class="order-confirm-delivery-time">
-              <input name="deliveryTime" type="radio" value="16時" />
+              <input name="deliveryTime" type="radio" value="16" />
               <span>16時</span>
             </label>
             <label class="order-confirm-delivery-time">
-              <input name="deliveryTime" type="radio" value="17時" />
+              <input name="deliveryTime" type="radio" value="17" />
               <span>17時</span>
             </label>
             <label class="order-confirm-delivery-time">
-              <input name="deliveryTime" type="radio" value="18時" />
+              <input name="deliveryTime" type="radio" value="18" />
               <span>18時</span>
             </label>
           </div>
