@@ -38,7 +38,7 @@
         <div class="header">
           <div class="header-left">
             <a href="{{ route('show.top') }}">
-              <img class="logo" src="img/header_logo2.jpg" />
+              <img class="logo" src="{{ asset('img/header_logo2.jpg') }}" />
             </a>
           </div>
 
@@ -118,7 +118,7 @@
 
     <footer>
       <div class="container">
-        <img src="img/header_logo2.jpg" />
+        <img src="{{ asset('img/header_logo2.jpg') }}" />
         <p>Let's read books around the world!!</p>
       </div>
     </footer>

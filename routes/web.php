@@ -7,6 +7,7 @@ use App\Http\Controllers\ShowBooksController;
 use App\Http\Controllers\ShowBookDetailController;
 use App\Http\Controllers\ShowCartController;
 use App\Http\Controllers\OrderConfirmController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -51,3 +52,7 @@ Route::delete('/deleteItem/{orderItem_id}', [DeleteItemController::class, 'delet
 
 //注文確認画面に遷移する
 Route::get('/showOrderConfirm', [OrderConfirmController::class, 'orderConfirm'])->name('book.orderConfirm');
+
+//注文を確定する
+Route::get('/order', [OrderController::class, 'createOrder']);
+Route::post('/order', [OrderController::class, 'createOrder'])->name('create_order');
