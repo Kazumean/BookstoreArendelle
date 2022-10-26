@@ -54,4 +54,5 @@ Route::delete('/deleteItem/{orderItem_id}', [DeleteItemController::class, 'delet
 Route::get('/showOrderConfirm', [OrderConfirmController::class, 'orderConfirm'])->name('book.orderConfirm');
 
 //注文を確定する
+Route::get('/order', [OrderController::class, 'createOrder']);
 Route::post('/order', [OrderController::class, 'createOrder'])->name('create_order');
